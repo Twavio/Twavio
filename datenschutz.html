@@ -3,228 +3,633 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datenschutzerklärung für die Twavio App - DSGVO-konform und transparent">
     <title>Datenschutzerklärung - Twavio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Base Colors */
+            --background: #F9F9F9;
+            --background-secondary: #F5F5F5;
+            --card: #ffffff;
+            --card-hover: #F0F8FF;
+            
+            /* Primary Brand Colors */
+            --primary-color: #3BB7B2;
+            --primary-light: #A7E0E3;
+            --primary-dark: #2A9D98;
+            
+            /* Secondary Colors */
+            --secondary-color: #FF8A65;
+            --secondary-light: #FFB299;
+            --secondary-dark: #FF7043;
+            
+            /* Text Colors */
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --text-light: #999999;
+            --text-inverse: #ffffff;
+            
+            /* Accent Colors */
+            --accent: #3BB7B2;
+            --accent-light: #A7E0E3;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #FF6B6B;
+            
+            /* Border Colors */
+            --border: #E0E0E0;
+            --border-light: #F0F0F0;
+            --border-dark: #CCCCCC;
+            
+            /* Background Colors */
+            --bg-light: #F9F9F9;
+            --bg-white: #ffffff;
+            
+            /* Shadow Colors */
+            --shadow-light-color: rgba(59, 183, 178, 0.08);
+            --shadow-medium-color: rgba(59, 183, 178, 0.12);
+            --shadow-dark-color: rgba(59, 183, 178, 0.16);
+            
+            /* Shadow System */
+            --shadow-light: 0 1px 2px var(--shadow-light-color);
+            --shadow-medium: 0 2px 4px var(--shadow-medium-color);
+            --shadow-large: 0 4px 8px var(--shadow-dark-color);
+            --shadow-xlarge: 0 8px 16px var(--shadow-dark-color);
+            --shadow: var(--shadow-large);
+            --shadow-lg: var(--shadow-xlarge);
+            
+            /* Gradient */
+            --gradient-start: #3BB7B2;
+            --gradient-end: #FF8A65;
+            --gradient-secondary-start: #A7E0E3;
+            --gradient-secondary-end: #FFB299;
+            
+            /* Signature Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--gradient-secondary-start) 0%, var(--gradient-secondary-end) 100%);
+            --gradient-subtle: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+            
+            /* Spacing System */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 20px;
+            --spacing-2xl: 24px;
+            --spacing-3xl: 32px;
+            --spacing-4xl: 40px;
+            --spacing-5xl: 48px;
+            
+            /* Border Radius */
+            --radius-button: 28px;
+            --radius-card: 20px;
+            --radius-input: 28px;
+            --radius-small: 8px;
+            --radius-medium: 12px;
+            --radius-large: 16px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding-top: 80px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+        
+        .logo-emoji {
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        /* Signature Card Style - Web optimiert */
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.1);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: var(--card);
+            padding: var(--spacing-3xl);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.1);
+            border: 1px solid var(--border-light);
         }
+        
         h1 {
-            color: #2563eb;
-            border-bottom: 3px solid #2563eb;
-            padding-bottom: 10px;
+            color: var(--text-dark);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
+        
         h2 {
-            color: #2563eb;
-            margin-top: 30px;
+            color: var(--text-dark);
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            padding-top: 1rem;
+            letter-spacing: -0.3px;
         }
+        
+        h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
         p {
-            margin-bottom: 15px;
+            margin-bottom: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
         }
-        ul {
-            margin-bottom: 15px;
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            color: var(--text-gray);
         }
+        
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
         a {
-            color: #2563eb;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
+        
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            font-size: 14px;
-            color: #666;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        /* Footer - Professioneller */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            border: none;
+            padding: 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-light);
+            transform: translateX(4px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Datenschutzerklärung</h1>
-        
-        <h2>1. Datenschutz auf einen Blick</h2>
-        <p><strong>Allgemeine Hinweise</strong></p>
-        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese App nutzen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
-        
-        <p><strong>Datenerfassung in dieser App</strong></p>
-        <p>Wer ist verantwortlich für die Datenerfassung in dieser App?<br>
-        Die Datenverarbeitung in dieser App erfolgt durch den Appbetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser App entnehmen.</p>
-        
-        <p>Wie erfassen wir Ihre Daten?<br>
-        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder bei der Registrierung angeben.</p>
-        
-        <p>Andere Daten werden automatisch oder nach Ihrer Einwilligung bei der Nutzung der App durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Gerätetyp, Betriebssystem, App-Version oder Uhrzeit der Nutzung). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese App nutzen.</p>
-        
-        <h2>2. Verantwortliche Stelle</h2>
-        <p>Die verantwortliche Stelle für die Datenverarbeitung in dieser App ist:</p>
-        <p>
-            Twavio App<br>
-            Enrique Rodriguez Neubauer<br>
-            Bolbergstr. 42<br>
-            72820 Sonnenbühl<br>
-            Deutschland<br><br>
-            Telefon: +49 160 99083840<br>
-            E-Mail: info@twavio.com
-        </p>
-        <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</p>
-        
-        <h2>3. Datenerfassung in dieser App</h2>
-        <p><strong>Welche Daten erheben wir?</strong></p>
-        <p>Bei der Nutzung unserer App erheben wir folgende personenbezogene Daten:</p>
-        <ul>
-            <li>Name und E-Mail-Adresse (bei Registrierung)</li>
-            <li>Profilinformationen (Alter, Geschlecht, Standort, Interessen, Reisevorlieben, Sprachen)</li>
-            <li>Profilbilder</li>
-            <li>Reiseinformationen und -pläne (Startort, Zielort, Datum, Beschreibung, Gruppengröße, Tags)</li>
-            <li>Reiseanfragen und Kommunikation zwischen Nutzern</li>
-            <li>Bewertungen und Bewertungsdaten</li>
-            <li>Social Media Links (Instagram, TikTok) – optional</li>
-            <li>Standortdaten – optional, nur bei expliziter Einwilligung</li>
-            <li>Technische Daten (Geräteinformationen, Betriebssystem, App-Version)</li>
-            <li>Nutzungsdaten (Zeitpunkt der Nutzung, aufgerufene Funktionen)</li>
-        </ul>
-        
-        <p><strong>Wofür nutzen wir Ihre Daten?</strong></p>
-        <ul>
-            <li>Bereitstellung der App-Funktionalitäten</li>
-            <li>Authentifizierung und Verwaltung von Nutzerkonten</li>
-            <li>Vermittlung von Reisebegleitern</li>
-            <li>Kommunikation zwischen Nutzern</li>
-            <li>Verbesserung der App-Performance und -Sicherheit</li>
-            <li>Erfüllung gesetzlicher Aufbewahrungspflichten</li>
-            <li>Verhinderung von Missbrauch und Betrug</li>
-        </ul>
-        
-        <p><strong>Rechtsgrundlage der Verarbeitung</strong></p>
-        <p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der folgenden Rechtsgrundlagen:</p>
-        <ul>
-            <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) – für optionale Daten wie Standortdaten oder Social Media Links</li>
-            <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) – für die Bereitstellung der App-Funktionalitäten</li>
-            <li>Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse) – für die Verbesserung der App und Sicherheitsmaßnahmen</li>
-            <li>Art. 6 Abs. 1 lit. c DSGVO (Rechtliche Verpflichtung) – für die Erfüllung gesetzlicher Aufbewahrungspflichten</li>
-        </ul>
-        
-        <h2>4. Speicherdauer</h2>
-        <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z.B. steuer- oder handelsrechtliche Aufbewahrungsfristen).</p>
-        <p>Nach Ablauf der Aufbewahrungsfrist werden die entsprechenden Daten routinemäßig und entsprechend den gesetzlichen Vorschriften gelöscht, sofern sie nicht zur Vertragserfüllung oder Vertragsanbahnung erforderlich sind.</p>
-        
-        <h2>5. Ihre Rechte</h2>
-        <p>Sie haben folgende Rechte:</p>
-        
-        <p><strong>Auskunftsrecht (Art. 15 DSGVO)</strong><br>
-        Sie haben das Recht, Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</p>
-        
-        <p><strong>Berichtigungsrecht (Art. 16 DSGVO)</strong><br>
-        Sie haben das Recht, die Berichtigung unrichtiger oder die Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</p>
-        
-        <p><strong>Löschungsrecht (Art. 17 DSGVO)</strong><br>
-        Sie haben das Recht, die Löschung Ihrer personenbezogenen Daten zu verlangen, sofern nicht gesetzliche Aufbewahrungspflichten oder andere rechtliche Gründe der Löschung entgegenstehen.</p>
-        
-        <p><strong>Einschränkung der Verarbeitung (Art. 18 DSGVO)</strong><br>
-        Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</p>
-        
-        <p><strong>Widerspruchsrecht (Art. 21 DSGVO)</strong><br>
-        Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten, die aufgrund von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, Widerspruch einzulegen.</p>
-        
-        <p><strong>Datenübertragbarkeit (Art. 20 DSGVO)</strong><br>
-        Sie haben das Recht, Ihre personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten oder die Übertragung an einen anderen Verantwortlichen zu verlangen.</p>
-        
-        <p><strong>Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO)</strong><br>
-        Sie haben das Recht, Ihre erteilte Einwilligung jederzeit zu widerrufen. Durch den Widerruf der Einwilligung wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt.</p>
-        
-        <p><strong>Beschwerderecht (Art. 77 DSGVO)</strong><br>
-        Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren, insbesondere in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt.</p>
-        
-        <p>Die für uns zuständige Aufsichtsbehörde ist:<br>
-        Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br>
-        Königstraße 10a<br>
-        70173 Stuttgart<br>
-        Deutschland<br>
-        Telefon: +49 711 615541-0<br>
-        E-Mail: poststelle@lfdi.bwl.de<br>
-        Internet: <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank">https://www.baden-wuerttemberg.datenschutz.de</a></p>
-        
-        <p>Um Ihre Rechte auszuüben, können Sie sich jederzeit an uns wenden. Die Kontaktdaten finden Sie im Impressum.</p>
-        
-        <h2>6. Datensicherheit</h2>
-        <p>Wir verwenden für die Datenübertragung zwischen der App und unseren Servern den verbreiteten SSL- bzw. TLS-Verschlüsselungsverfahren. Dies stellt sicher, dass Ihre Daten während der Übertragung geschützt sind.</p>
-        <p>Wir setzen zudem technische und organisatorische Maßnahmen ein, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den unbefugten Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.</p>
-        
-        <h2>7. Drittanbieter-Dienste</h2>
-        <p><strong>Firebase (Google LLC)</strong><br>
-        Diese App nutzt Firebase für Backend-Services, Authentifizierung, Datenbank und möglicherweise für die Speicherung von Dateien. Firebase ist ein Service von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.</p>
-        <p>Firebase verarbeitet folgende Daten:</p>
-        <ul>
-            <li>Authentifizierungsdaten (E-Mail, Passwort-Hashes)</li>
-            <li>Nutzerprofile und App-Daten</li>
-            <li>Technische Logs und Diagnosedaten</li>
-        </ul>
-        <p>Die Datenübertragung erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission. Weitere Informationen finden Sie in der Firebase-Datenschutzerklärung: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a></p>
-        
-        <p><strong>Google OAuth</strong><br>
-        Bei der Nutzung der Google-Anmeldung werden Daten an Google LLC übertragen. Weitere Informationen finden Sie in der Google-Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
-        
-        <p><strong>Cloudinary</strong><br>
-        Für die Speicherung und Optimierung von Bildern nutzen wir den Service Cloudinary. Weitere Informationen finden Sie in der Cloudinary-Datenschutzerklärung: <a href="https://cloudinary.com/privacy" target="_blank">https://cloudinary.com/privacy</a></p>
-        
-        <p><strong>Expo</strong><br>
-        Diese App nutzt Expo für die Entwicklung und den Betrieb. Expo kann technische Daten wie Geräteinformationen und Nutzungsstatistiken erheben. Weitere Informationen finden Sie unter: <a href="https://expo.dev/privacy" target="_blank">https://expo.dev/privacy</a></p>
-        
-        <h2>8. Datenübertragung in Drittländer</h2>
-        <p>Einige der von uns verwendeten Dienste (z.B. Firebase, Google) haben ihren Sitz in den USA. Die Datenübertragung erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission gemäß Art. 46 DSGVO. Diese stellen sicher, dass Ihre Daten auch bei Übertragung in Drittländer ein angemessenes Schutzniveau erhalten.</p>
-        <p>Sie haben das Recht, eine Kopie der Standardvertragsklauseln anzufordern. Bitte wenden Sie sich hierfür an uns unter den im Impressum angegebenen Kontaktdaten.</p>
-        
-        <h2>9. Cookies und lokale Speicherung</h2>
-        <p>Diese App verwendet keine Cookies im herkömmlichen Sinne. Wir speichern jedoch lokale Daten auf Ihrem Gerät (z.B. über AsyncStorage), um die App-Funktionalität zu gewährleisten. Diese Daten werden nur lokal gespeichert und nicht an Dritte weitergegeben.</p>
-        <p>Gespeichert werden können:</p>
-        <ul>
-            <li>Authentifizierungs-Tokens</li>
-            <li>App-Einstellungen</li>
-            <li>Temporäre Cache-Daten</li>
-        </ul>
-        
-        <h2>10. Standortdaten</h2>
-        <p>Diese App kann optional Standortdaten erfassen, wenn Sie dies ausdrücklich erlauben. Die Standortdaten werden nur verwendet, um Ihnen relevante Reiseangebote in Ihrer Nähe anzuzeigen. Sie können die Standortfreigabe jederzeit in den Einstellungen Ihres Geräts widerrufen.</p>
-        <p>Standortdaten werden nicht dauerhaft gespeichert und nicht an Dritte weitergegeben, es sei denn, dies ist für die Bereitstellung der App-Funktionalität erforderlich.</p>
-        
-        <h2>11. Profilbilder und Medien</h2>
-        <p>Hochgeladene Profilbilder werden über Cloudinary gespeichert und verarbeitet. Die Bilder werden optimiert und können von anderen Nutzern der App eingesehen werden, soweit dies für die App-Funktionalität erforderlich ist.</p>
-        <p>Sie können Ihr Profilbild jederzeit ändern oder löschen. Bei Löschung des Kontos werden auch alle zugehörigen Bilder gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
-        
-        <h2>12. Kommunikation zwischen Nutzern</h2>
-        <p>Die App ermöglicht die Kommunikation zwischen Nutzern (z.B. Reiseanfragen, Nachrichten). Diese Kommunikationsdaten werden gespeichert, um die App-Funktionalität zu gewährleisten. Die Daten werden nicht an Dritte weitergegeben und nur für die Kommunikation zwischen den beteiligten Nutzern verwendet.</p>
-        <p>Wir behalten uns vor, Kommunikationsdaten zu überprüfen, wenn wir berechtigten Anlass zur Annahme haben, dass gegen unsere Nutzungsbedingungen verstoßen wird.</p>
-        
-        <h2>13. Kontakt</h2>
-        <p>Bei Fragen zum Datenschutz können Sie uns unter folgenden Kontaktdaten erreichen:</p>
-        <p>
-            Twavio App<br>
-            Enrique Rodriguez Neubauer<br>
-            Bolbergstr. 42<br>
-            72820 Sonnenbühl<br>
-            Deutschland<br><br>
-            E-Mail: info@twavio.com<br>
-            Telefon: +49 160 99083840
-        </p>
-        
-        <h2>14. Änderungen dieser Datenschutzerklärung</h2>
-        <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren, um sie an geänderte Rechtslagen oder bei Änderungen der App-Funktionalität sowie der Datenverarbeitung anzupassen. Die jeweils aktuelle Version finden Sie in der App.</p>
-        <p>Wesentliche Änderungen werden wir Ihnen mitteilen. Bei erheblichen Änderungen werden wir Sie zusätzlich informieren und ggf. eine neue Einwilligung einholen.</p>
-        
-        <div class="footer">
-            <p><strong>Stand:</strong> Diese Datenschutzerklärung wurde zuletzt am 15.01.2025 aktualisiert.</p>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#hero" class="logo"><span class="logo-emoji">✈️</span><span class="logo-text">Twavio</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how-it-works">So funktioniert's</a></li>
+                <li><a href="index.html#download">Bald verfügbar</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Datenschutzerklärung</h1>
+            
+            <h2>1. Datenschutz auf einen Blick</h2>
+            <p><strong>Allgemeine Hinweise</strong></p>
+            <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese App nutzen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
+            
+            <p><strong>Datenerfassung in dieser App</strong></p>
+            <p>Wer ist verantwortlich für die Datenerfassung in dieser App?<br>
+            Die Datenverarbeitung in dieser App erfolgt durch den Appbetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser App entnehmen.</p>
+            
+            <p>Wie erfassen wir Ihre Daten?<br>
+            Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder bei der Registrierung angeben.</p>
+            
+            <p>Andere Daten werden automatisch oder nach Ihrer Einwilligung bei der Nutzung der App durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Gerätetyp, Betriebssystem, App-Version oder Uhrzeit der Nutzung). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese App nutzen.</p>
+            
+            <h2>2. Verantwortliche Stelle</h2>
+            <p>Die verantwortliche Stelle für die Datenverarbeitung in dieser App ist:</p>
+            <p>
+                Twavio App<br>
+                Enrique Rodriguez Neubauer<br>
+                Bolbergstr. 42<br>
+                72820 Sonnenbühl<br>
+                Deutschland<br><br>
+                E-Mail: info@twavio.com
+            </p>
+            <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</p>
+            
+            <h2>3. Datenerfassung in dieser App</h2>
+            <p><strong>Welche Daten erheben wir?</strong></p>
+            <p>Bei der Nutzung unserer App erheben wir folgende personenbezogene Daten:</p>
+            <ul>
+                <li>Name und E-Mail-Adresse (bei Registrierung)</li>
+                <li>Profilinformationen (Alter, Geschlecht, Standort, Interessen, Reisevorlieben, Sprachen)</li>
+                <li>Profilbilder</li>
+                <li>Reiseinformationen und -pläne (Startort, Zielort, Datum, Beschreibung, Gruppengröße, Tags)</li>
+                <li>Reiseanfragen und Kommunikation zwischen Nutzern</li>
+                <li>Bewertungen und Bewertungsdaten</li>
+                <li>Social Media Links (Instagram, TikTok) – optional</li>
+                <li>Standortdaten – optional, nur bei expliziter Einwilligung</li>
+                <li>Technische Daten (Geräteinformationen, Betriebssystem, App-Version)</li>
+                <li>Nutzungsdaten (Zeitpunkt der Nutzung, aufgerufene Funktionen)</li>
+            </ul>
+            
+            <p><strong>Wofür nutzen wir Ihre Daten?</strong></p>
+            <ul>
+                <li>Bereitstellung der App-Funktionalitäten</li>
+                <li>Authentifizierung und Verwaltung von Nutzerkonten</li>
+                <li>Vermittlung von Reisebegleitern</li>
+                <li>Kommunikation zwischen Nutzern</li>
+                <li>Verbesserung der App-Performance und -Sicherheit</li>
+                <li>Erfüllung gesetzlicher Aufbewahrungspflichten</li>
+                <li>Verhinderung von Missbrauch und Betrug</li>
+            </ul>
+            
+            <p><strong>Rechtsgrundlage der Verarbeitung</strong></p>
+            <p>Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der folgenden Rechtsgrundlagen:</p>
+            <ul>
+                <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) – für optionale Daten wie Standortdaten oder Social Media Links</li>
+                <li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) – für die Bereitstellung der App-Funktionalitäten</li>
+                <li>Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse) – für die Verbesserung der App und Sicherheitsmaßnahmen</li>
+                <li>Art. 6 Abs. 1 lit. c DSGVO (Rechtliche Verpflichtung) – für die Erfüllung gesetzlicher Aufbewahrungspflichten</li>
+            </ul>
+            
+            <h2>4. Speicherdauer</h2>
+            <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z.B. steuer- oder handelsrechtliche Aufbewahrungsfristen).</p>
+            <p>Nach Ablauf der Aufbewahrungsfrist werden die entsprechenden Daten routinemäßig und entsprechend den gesetzlichen Vorschriften gelöscht, sofern sie nicht zur Vertragserfüllung oder Vertragsanbahnung erforderlich sind.</p>
+            
+            <h2>5. Ihre Rechte</h2>
+            <p>Sie haben folgende Rechte:</p>
+            
+            <p><strong>Auskunftsrecht (Art. 15 DSGVO)</strong><br>
+            Sie haben das Recht, Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen.</p>
+            
+            <p><strong>Berichtigungsrecht (Art. 16 DSGVO)</strong><br>
+            Sie haben das Recht, die Berichtigung unrichtiger oder die Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen.</p>
+            
+            <p><strong>Löschungsrecht (Art. 17 DSGVO)</strong><br>
+            Sie haben das Recht, die Löschung Ihrer personenbezogenen Daten zu verlangen, sofern nicht gesetzliche Aufbewahrungspflichten oder andere rechtliche Gründe der Löschung entgegenstehen.</p>
+            
+            <p><strong>Einschränkung der Verarbeitung (Art. 18 DSGVO)</strong><br>
+            Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</p>
+            
+            <p><strong>Widerspruchsrecht (Art. 21 DSGVO)</strong><br>
+            Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten, die aufgrund von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, Widerspruch einzulegen.</p>
+            
+            <p><strong>Datenübertragbarkeit (Art. 20 DSGVO)</strong><br>
+            Sie haben das Recht, Ihre personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten oder die Übertragung an einen anderen Verantwortlichen zu verlangen.</p>
+            
+            <p><strong>Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO)</strong><br>
+            Sie haben das Recht, Ihre erteilte Einwilligung jederzeit zu widerrufen. Durch den Widerruf der Einwilligung wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt.</p>
+            
+            <p><strong>Beschwerderecht (Art. 77 DSGVO)</strong><br>
+            Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren, insbesondere in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt.</p>
+            
+            <p>Die für uns zuständige Aufsichtsbehörde ist:<br>
+            Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br>
+            Königstraße 10a<br>
+            70173 Stuttgart<br>
+            Deutschland<br>
+            Telefon: +49 711 615541-0<br>
+            E-Mail: poststelle@lfdi.bwl.de<br>
+            Internet: <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank">https://www.baden-wuerttemberg.datenschutz.de</a></p>
+            
+            <p>Um Ihre Rechte auszuüben, können Sie sich jederzeit an uns wenden. Die Kontaktdaten finden Sie im Impressum.</p>
+            
+            <h2>6. Datensicherheit</h2>
+            <p>Wir verwenden für die Datenübertragung zwischen der App und unseren Servern den verbreiteten SSL- bzw. TLS-Verschlüsselungsverfahren. Dies stellt sicher, dass Ihre Daten während der Übertragung geschützt sind.</p>
+            <p>Wir setzen zudem technische und organisatorische Maßnahmen ein, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den unbefugten Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.</p>
+            
+            <h2>7. Drittanbieter-Dienste</h2>
+            <p><strong>Firebase (Google LLC)</strong><br>
+            Diese App nutzt Firebase für Backend-Services, Authentifizierung, Datenbank und möglicherweise für die Speicherung von Dateien. Firebase ist ein Service von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.</p>
+            <p>Firebase verarbeitet folgende Daten:</p>
+            <ul>
+                <li>Authentifizierungsdaten (E-Mail, Passwort-Hashes)</li>
+                <li>Nutzerprofile und App-Daten</li>
+                <li>Technische Logs und Diagnosedaten</li>
+            </ul>
+            <p>Die Datenübertragung erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission. Weitere Informationen finden Sie in der Firebase-Datenschutzerklärung: <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a></p>
+            
+            <p><strong>Google OAuth</strong><br>
+            Bei der Nutzung der Google-Anmeldung werden Daten an Google LLC übertragen. Weitere Informationen finden Sie in der Google-Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+            
+            <p><strong>Cloudinary</strong><br>
+            Für die Speicherung und Optimierung von Bildern nutzen wir den Service Cloudinary. Weitere Informationen finden Sie in der Cloudinary-Datenschutzerklärung: <a href="https://cloudinary.com/privacy" target="_blank">https://cloudinary.com/privacy</a></p>
+            
+            <p><strong>Expo</strong><br>
+            Diese App nutzt Expo für die Entwicklung und den Betrieb. Expo kann technische Daten wie Geräteinformationen und Nutzungsstatistiken erheben. Weitere Informationen finden Sie unter: <a href="https://expo.dev/privacy" target="_blank">https://expo.dev/privacy</a></p>
+            
+            <h2>8. Datenübertragung in Drittländer</h2>
+            <p>Einige der von uns verwendeten Dienste (z.B. Firebase, Google) haben ihren Sitz in den USA. Die Datenübertragung erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission gemäß Art. 46 DSGVO. Diese stellen sicher, dass Ihre Daten auch bei Übertragung in Drittländer ein angemessenes Schutzniveau erhalten.</p>
+            <p>Sie haben das Recht, eine Kopie der Standardvertragsklauseln anzufordern. Bitte wenden Sie sich hierfür an uns unter den im Impressum angegebenen Kontaktdaten.</p>
+            
+            <h2>9. Cookies und lokale Speicherung</h2>
+            <p>Diese App verwendet keine Cookies im herkömmlichen Sinne. Wir speichern jedoch lokale Daten auf Ihrem Gerät (z.B. über AsyncStorage), um die App-Funktionalität zu gewährleisten. Diese Daten werden nur lokal gespeichert und nicht an Dritte weitergegeben.</p>
+            <p>Gespeichert werden können:</p>
+            <ul>
+                <li>Authentifizierungs-Tokens</li>
+                <li>App-Einstellungen</li>
+                <li>Temporäre Cache-Daten</li>
+            </ul>
+            
+            <h2>10. Standortdaten</h2>
+            <p>Diese App kann optional Standortdaten erfassen, wenn Sie dies ausdrücklich erlauben. Die Standortdaten werden nur verwendet, um Ihnen relevante Reiseangebote in Ihrer Nähe anzuzeigen. Sie können die Standortfreigabe jederzeit in den Einstellungen Ihres Geräts widerrufen.</p>
+            <p>Standortdaten werden nicht dauerhaft gespeichert und nicht an Dritte weitergegeben, es sei denn, dies ist für die Bereitstellung der App-Funktionalität erforderlich.</p>
+            
+            <h2>11. Profilbilder und Medien</h2>
+            <p>Hochgeladene Profilbilder werden über Cloudinary gespeichert und verarbeitet. Die Bilder werden optimiert und können von anderen Nutzern der App eingesehen werden, soweit dies für die App-Funktionalität erforderlich ist.</p>
+            <p>Sie können Ihr Profilbild jederzeit ändern oder löschen. Bei Löschung des Kontos werden auch alle zugehörigen Bilder gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+            
+            <h2>12. Kommunikation zwischen Nutzern</h2>
+            <p>Die App ermöglicht die Kommunikation zwischen Nutzern (z.B. Reiseanfragen, Nachrichten). Diese Kommunikationsdaten werden gespeichert, um die App-Funktionalität zu gewährleisten. Die Daten werden nicht an Dritte weitergegeben und nur für die Kommunikation zwischen den beteiligten Nutzern verwendet.</p>
+            <p>Wir behalten uns vor, Kommunikationsdaten zu überprüfen, wenn wir berechtigten Anlass zur Annahme haben, dass gegen unsere Nutzungsbedingungen verstoßen wird.</p>
+            
+            <h2>13. Kontakt</h2>
+            <p>Bei Fragen zum Datenschutz können Sie uns unter folgenden Kontaktdaten erreichen:</p>
+            <p>
+                Twavio App<br>
+                Enrique Rodriguez Neubauer<br>
+                Bolbergstr. 42<br>
+                72820 Sonnenbühl<br>
+                Deutschland<br><br>
+                E-Mail: info@twavio.com
+            </p>
+            
+            <h2>14. Änderungen dieser Datenschutzerklärung</h2>
+            <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren, um sie an geänderte Rechtslagen oder bei Änderungen der App-Funktionalität sowie der Datenverarbeitung anzupassen. Die jeweils aktuelle Version finden Sie in der App.</p>
+            <p>Wesentliche Änderungen werden wir Ihnen mitteilen. Bei erheblichen Änderungen werden wir Sie zusätzlich informieren und ggf. eine neue Einwilligung einholen.</p>
+            
+            <div class="footer">
+                <p><strong>Stand:</strong> Diese Datenschutzerklärung wurde zuletzt am 15.01.2025 aktualisiert.</p>
+            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Twavio</h3>
+                <p>Gemeinsam reisen, gemeinsam erleben. Die moderne Social Travel App für iOS und Android.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
+                    <li><a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
+                    <li><a href="konto-loeschen.html">Konto löschen</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <ul>
+                    <li>📧 info@twavio.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Twavio. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        }
+    </script>
 </body>
 </html>
-
