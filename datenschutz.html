@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Datenschutzerklärung für die Twavio App - DSGVO-konform und transparent">
     <title>Datenschutzerklärung - Twavio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <style>
         * {
             margin: 0;
@@ -138,9 +141,16 @@
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             text-decoration: none;
             color: var(--text-dark);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            display: block;
         }
         
         .logo-emoji {
@@ -393,7 +403,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="index.html#hero" class="logo"><span class="logo-emoji">✈️</span><span class="logo-text">Twavio</span></a>
+            <a href="index.html#hero" class="logo"><img src="app-icon-new.png" alt="Twavio Logo" class="logo-img"><span class="logo-text">Twavio</span></a>
             <ul class="nav-links">
                 <li><a href="index.html#features">Features</a></li>
                 <li><a href="index.html#how-it-works">So funktioniert's</a></li>
