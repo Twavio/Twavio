@@ -526,6 +526,7 @@
             <div class="footer-section">
                 <h3>Rechtliches</h3>
                 <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
                     <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
                     <li><a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
                     <li><a href="konto-loeschen.html">Konto löschen</a></li>
@@ -545,7 +546,131 @@
         </div>
     </footer>
 
+    <!-- Cookie-Banner (DSGVO/TTDSG konform) -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p><strong>Cookie-Hinweis</strong></p>
+                <p>Diese Website verwendet keine Cookies. Wir respektieren Ihre Privatsphäre und speichern keine Tracking-Daten. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Verstanden</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text p {
+            margin: 0.5rem 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cookie-text a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-button);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .cookie-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                padding: 1rem;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+            }
+
+            .cookie-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
     <script>
+        // Cookie-Banner Funktion
+        (function() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            
+            if (!cookieConsent) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    if (banner) {
+                        banner.style.display = 'block';
+                    }
+                }, 500);
+            }
+
+            const acceptBtn = document.getElementById('cookie-accept');
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'true');
+                    const banner = document.getElementById('cookie-banner');
+                    if (banner) {
+                        banner.style.display = 'none';
+                    }
+                });
+            }
+        })();
+
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
