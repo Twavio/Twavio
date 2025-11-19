@@ -773,26 +773,10 @@
                 timestamp: timestamp
             };
             
-            // E-Mail-Parameter für Bestätigungs-E-Mail an Tester
-            const testerTemplateParams = {
-                to_email: email,
-                to_name: name,
-                from_name: 'Twavio Team',
-                from_email: 'info@twavio.com',
-                reply_to: 'info@twavio.com',
-                device: device,
-                timestamp: timestamp,
-                newsletter: newsletter
-            };
-            
             // Sende E-Mail an Admin
             emailjs.send('service_n819ygk', 'template_wvapw9b', adminTemplateParams)
                 .then(function() {
-                    // Sende Bestätigungs-E-Mail an Tester
-                    return emailjs.send('service_n819ygk', 'template_wvapw9b', testerTemplateParams);
-                })
-                .then(function() {
-                    // Erfolg
+                    // Erfolg - nur Admin-E-Mail wird gesendet
                     form.style.display = 'none';
                     successMessage.classList.add('show');
                     successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
