@@ -786,10 +786,10 @@
             };
             
             // Sende E-Mail an Admin
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID_ADMIN', adminTemplateParams)
+            emailjs.send('service_n819ygk', 'YOUR_TEMPLATE_ID_ADMIN', adminTemplateParams)
                 .then(function() {
                     // Sende Bestätigungs-E-Mail an Tester
-                    return emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID_CONFIRMATION', testerTemplateParams);
+                    return emailjs.send('service_n819ygk', 'YOUR_TEMPLATE_ID_CONFIRMATION', testerTemplateParams);
                 })
                 .then(function() {
                     // Erfolg
