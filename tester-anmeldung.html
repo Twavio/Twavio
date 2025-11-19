@@ -509,7 +509,8 @@
             <form id="tester-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="b87d0283-e9ff-451e-9598-0d55c4b9ebca">
                 <input type="hidden" name="subject" value="Neue Beta-Tester-Anmeldung">
-                <input type="hidden" name="from_name" value="Twavio Beta-Tester Formular">
+                <input type="hidden" name="from_name" value="Twavio Team">
+                <input type="hidden" name="from_email" value="info@twavio.com">
                 <input type="hidden" name="redirect" value="false">
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
@@ -758,7 +759,9 @@ Anmeldedatum: ${new Date().toLocaleString('de-DE')}
 Diese E-Mail wurde automatisch über das Beta-Tester-Anmeldeformular gesendet.`;
             
             formData.set('message', message);
-            formData.set('email', email); // E-Mail des Testers für Reply-To
+            formData.set('from_email', 'info@twavio.com');
+            formData.set('from_name', 'Twavio Team');
+            formData.set('replyto', email); // Reply-To auf Tester-E-Mail setzen
             
             // AJAX Request an Web3Forms API
             fetch('https://api.web3forms.com/submit', {
