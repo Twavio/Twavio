@@ -8,16 +8,6 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.svg">
-    <!-- EmailJS für automatischen E-Mail-Versand -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // EmailJS Initialisierung
-        // Ersetze 'YOUR_PUBLIC_KEY' mit deinem EmailJS Public Key
-        // Kostenloser Account: https://www.emailjs.com/
-        (function(){
-            emailjs.init("YOUR_PUBLIC_KEY");
-        })();
-    </script>
     <style>
         * {
             margin: 0;
@@ -516,7 +506,7 @@
                 <p style="margin-top: 0.5rem;">Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.</p>
             </div>
             
-            <form id="tester-form">
+            <form id="tester-form" action="send-tester-email.php" method="POST">
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
                     <input type="text" id="name" name="name" required>
@@ -536,9 +526,9 @@
                     <label for="device">Welches Gerät nutzt du? <span class="required">*</span></label>
                     <select id="device" name="device" required>
                         <option value="">Bitte wählen</option>
-                        <option value="ios">iOS (iPhone/iPad)</option>
-                        <option value="android">Android</option>
-                        <option value="both">Beide</option>
+                        <option value="iOS (iPhone/iPad)">iOS (iPhone/iPad)</option>
+                        <option value="Android">Android</option>
+                        <option value="Beide">Beide</option>
                     </select>
                 </div>
                 
@@ -553,7 +543,7 @@
                 </div>
                 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <input type="checkbox" id="newsletter" name="newsletter" value="1">
                     <label for="newsletter">Ich möchte über Neuigkeiten und Updates per E-Mail informiert werden.</label>
                 </div>
                 
@@ -718,7 +708,7 @@
             }
         })();
 
-        // Form Submission - sendet E-Mails an Betreiber und Tester
+        // Form Submission - sendet E-Mails via PHP
         document.getElementById('tester-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -737,123 +727,33 @@
             submitButton.textContent = 'Wird gesendet...';
             
             // Formulardaten sammeln
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value || 'Nicht angegeben',
-                device: document.getElementById('device').value,
-                motivation: document.getElementById('motivation').value,
-                newsletter: document.getElementById('newsletter').checked ? 'Ja' : 'Nein',
-                timestamp: new Date().toLocaleString('de-DE')
-            };
+            const formData = new FormData(form);
             
-            // E-Mail an Betreiber (info@twavio.com)
-            const adminEmailBody = `Neue Beta-Tester-Anmeldung für Twavio
-
-Name: ${formData.name}
-E-Mail: ${formData.email}
-Telefon: ${formData.phone}
-Gerät: ${formData.device}
-Newsletter: ${formData.newsletter}
-
-Motivation:
-${formData.motivation}
-
----
-Anmeldedatum: ${formData.timestamp}
-Diese E-Mail wurde automatisch über das Beta-Tester-Anmeldeformular gesendet.`;
-            
-            // Bestätigungs-E-Mail an Tester
-            const testerEmailBody = `Hallo ${formData.name},
-
-vielen Dank für dein Interesse an Twavio!
-
-Wir haben deine Anmeldung als Beta-Tester erhalten und freuen uns sehr, dass du uns bei der Entwicklung helfen möchtest.
-
-Deine Anmeldedaten:
-- Name: ${formData.name}
-- E-Mail: ${formData.email}
-- Gerät: ${formData.device}
-- Anmeldedatum: ${formData.timestamp}
-
-${formData.newsletter === 'Ja' ? 'Du wirst über Neuigkeiten und Updates per E-Mail informiert.\n\n' : ''}Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.
-
-Bis dahin kannst du uns jederzeit unter info@twavio.com erreichen.
-
-Viele Grüße
-Das Twavio Team
-
----
-Twavio - Gemeinsam reisen, gemeinsam erleben
-info@twavio.com
-https://twavio.com`;
-
-            // Versuche EmailJS zu verwenden (wenn konfiguriert)
-            if (typeof emailjs !== 'undefined' && emailjs.init.toString().includes('YOUR_PUBLIC_KEY') === false) {
-                // EmailJS ist konfiguriert - sende beide E-Mails
-                const adminTemplateParams = {
-                    to_email: 'info@twavio.com',
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    subject: `Neue Beta-Tester-Anmeldung: ${formData.name}`,
-                    message: adminEmailBody
-                };
-                
-                const testerTemplateParams = {
-                    to_email: formData.email,
-                    to_name: formData.name,
-                    from_name: 'Twavio Team',
-                    from_email: 'info@twavio.com',
-                    subject: 'Beta-Tester-Anmeldung erhalten - Twavio',
-                    message: testerEmailBody
-                };
-                
-                // Sende E-Mail an Betreiber
-                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID_ADMIN', adminTemplateParams)
-                    .then(function() {
-                        // Sende Bestätigungs-E-Mail an Tester
-                        return emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID_CONFIRMATION', testerTemplateParams);
-                    })
-                    .then(function() {
-                        // Erfolg
-                        form.style.display = 'none';
-                        successMessage.classList.add('show');
-                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    })
-                    .catch(function(error) {
-                        console.error('EmailJS Fehler:', error);
-                        // Fallback zu mailto
-                        sendViaMailto(formData, adminEmailBody, testerEmailBody);
-                    });
-            } else {
-                // Fallback: mailto Links für beide E-Mails
-                sendViaMailto(formData, adminEmailBody, testerEmailBody);
-            }
-            
-            function sendViaMailto(formData, adminBody, testerBody) {
-                // E-Mail an Betreiber
-                const adminSubject = encodeURIComponent(`Neue Beta-Tester-Anmeldung: ${formData.name}`);
-                const adminBodyEncoded = encodeURIComponent(adminBody);
-                const adminMailto = `mailto:info@twavio.com?subject=${adminSubject}&body=${adminBodyEncoded}`;
-                
-                // E-Mail an Tester
-                const testerSubject = encodeURIComponent('Beta-Tester-Anmeldung erhalten - Twavio');
-                const testerBodyEncoded = encodeURIComponent(testerBody);
-                const testerMailto = `mailto:${formData.email}?subject=${testerSubject}&body=${testerBodyEncoded}`;
-                
-                // Öffne beide E-Mails nacheinander
-                window.location.href = adminMailto;
-                
-                setTimeout(() => {
-                    window.location.href = testerMailto;
-                    
-                    setTimeout(() => {
-                        form.style.display = 'none';
-                        successMessage.classList.add('show');
-                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 500);
-                }, 500);
-            }
+            // AJAX Request an PHP-Script
+            fetch('send-tester-email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Erfolg
+                    form.style.display = 'none';
+                    successMessage.classList.add('show');
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    // Fehler
+                    alert('Fehler: ' + data.message);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Anmeldung absenden';
+                }
+            })
+            .catch(error => {
+                console.error('Fehler:', error);
+                alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut oder kontaktiere uns direkt unter info@twavio.com');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Anmeldung absenden';
+            });
         });
 
         // Mobile menu toggle
