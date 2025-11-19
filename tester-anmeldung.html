@@ -759,27 +759,18 @@
             const timestamp = new Date().toLocaleString('de-DE');
             
             // E-Mail-Parameter für Admin-E-Mail
+            // Alle Variablen einzeln senden, damit sie im EmailJS Template verwendet werden können
             const adminTemplateParams = {
                 to_email: 'info@twavio.com',
                 to_name: 'Twavio Team',
                 from_name: name,
                 from_email: email,
                 reply_to: email,
-                subject: 'Neue Beta-Tester-Anmeldung: ' + name,
-                message: `Neue Beta-Tester-Anmeldung für Twavio
-
-Name: ${name}
-E-Mail: ${email}
-Telefon: ${phone}
-Gerät: ${device}
-Newsletter: ${newsletter}
-
-Motivation:
-${motivation}
-
----
-Anmeldedatum: ${timestamp}
-Diese E-Mail wurde automatisch über das Beta-Tester-Anmeldeformular gesendet.`
+                phone: phone,
+                device: device,
+                newsletter: newsletter,
+                motivation: motivation,
+                timestamp: timestamp
             };
             
             // E-Mail-Parameter für Bestätigungs-E-Mail an Tester
@@ -789,30 +780,9 @@ Diese E-Mail wurde automatisch über das Beta-Tester-Anmeldeformular gesendet.`
                 from_name: 'Twavio Team',
                 from_email: 'info@twavio.com',
                 reply_to: 'info@twavio.com',
-                subject: 'Beta-Tester-Anmeldung erhalten - Twavio',
-                message: `Hallo ${name},
-
-vielen Dank für dein Interesse an Twavio!
-
-Wir haben deine Anmeldung als Beta-Tester erhalten und freuen uns sehr, dass du uns bei der Entwicklung helfen möchtest.
-
-Deine Anmeldedaten:
-- Name: ${name}
-- E-Mail: ${email}
-- Gerät: ${device}
-- Anmeldedatum: ${timestamp}
-
-${newsletter === 'Ja' ? 'Du wirst über Neuigkeiten und Updates per E-Mail informiert.\n\n' : ''}Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.
-
-Bis dahin kannst du uns jederzeit unter info@twavio.com erreichen.
-
-Viele Grüße
-Das Twavio Team
-
----
-Twavio - Gemeinsam reisen, gemeinsam erleben
-info@twavio.com
-https://twavio.com`
+                device: device,
+                timestamp: timestamp,
+                newsletter: newsletter
             };
             
             // Sende E-Mail an Admin
