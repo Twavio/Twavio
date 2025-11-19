@@ -506,7 +506,11 @@
                 <p style="margin-top: 0.5rem;">Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.</p>
             </div>
             
-            <form id="tester-form" action="send-tester-email.php" method="POST">
+            <form id="tester-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                <input type="hidden" name="subject" value="Neue Beta-Tester-Anmeldung">
+                <input type="hidden" name="from_name" value="Twavio Beta-Tester Formular">
+                <input type="hidden" name="redirect" value="false">
                 <div class="form-group">
                     <label for="name">Name <span class="required">*</span></label>
                     <input type="text" id="name" name="name" required>
@@ -708,7 +712,7 @@
             }
         })();
 
-        // Form Submission - sendet E-Mails via PHP
+        // Form Submission - sendet E-Mails via Web3Forms
         document.getElementById('tester-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -726,24 +730,54 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Wird gesendet...';
             
-            // Formulardaten sammeln
+            // Formulardaten sammeln und formatieren
             const formData = new FormData(form);
             
-            // AJAX Request an PHP-Script
-            fetch('send-tester-email.php', {
+            // Zusätzliche Daten für E-Mail-Formatierung
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone') || 'Nicht angegeben';
+            const device = formData.get('device');
+            const motivation = formData.get('motivation');
+            const newsletter = formData.get('newsletter') ? 'Ja' : 'Nein';
+            
+            // Formatierte Nachricht für E-Mail
+            const message = `Neue Beta-Tester-Anmeldung für Twavio
+
+Name: ${name}
+E-Mail: ${email}
+Telefon: ${phone}
+Gerät: ${device}
+Newsletter: ${newsletter}
+
+Motivation:
+${motivation}
+
+---
+Anmeldedatum: ${new Date().toLocaleString('de-DE')}
+Diese E-Mail wurde automatisch über das Beta-Tester-Anmeldeformular gesendet.`;
+            
+            formData.set('message', message);
+            formData.set('email', email); // E-Mail des Testers für Reply-To
+            
+            // AJAX Request an Web3Forms API
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Erfolg
+                    // Erfolg - sende Bestätigungs-E-Mail an Tester
+                    sendConfirmationEmail(name, email, device, newsletter);
+                    
+                    // Formular ausblenden und Erfolgsmeldung zeigen
                     form.style.display = 'none';
                     successMessage.classList.add('show');
                     successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
                     // Fehler
-                    alert('Fehler: ' + data.message);
+                    alert('Fehler: ' + (data.message || 'Bitte versuche es später erneut'));
                     submitButton.disabled = false;
                     submitButton.textContent = 'Anmeldung absenden';
                 }
@@ -755,6 +789,49 @@
                 submitButton.textContent = 'Anmeldung absenden';
             });
         });
+        
+        // Funktion zum Senden der Bestätigungs-E-Mail an Tester
+        function sendConfirmationEmail(name, email, device, newsletter) {
+            const confirmationData = new FormData();
+            confirmationData.append('access_key', document.querySelector('input[name="access_key"]').value);
+            confirmationData.append('subject', 'Beta-Tester-Anmeldung erhalten - Twavio');
+            confirmationData.append('to_email', email);
+            confirmationData.append('from_name', 'Twavio Team');
+            confirmationData.append('from_email', 'info@twavio.com');
+            confirmationData.append('redirect', 'false');
+            
+            const confirmationMessage = `Hallo ${name},
+
+vielen Dank für dein Interesse an Twavio!
+
+Wir haben deine Anmeldung als Beta-Tester erhalten und freuen uns sehr, dass du uns bei der Entwicklung helfen möchtest.
+
+Deine Anmeldedaten:
+- Name: ${name}
+- E-Mail: ${email}
+- Gerät: ${device}
+- Anmeldedatum: ${new Date().toLocaleString('de-DE')}
+
+${newsletter === 'Ja' ? 'Du wirst über Neuigkeiten und Updates per E-Mail informiert.\n\n' : ''}Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.
+
+Bis dahin kannst du uns jederzeit unter info@twavio.com erreichen.
+
+Viele Grüße
+Das Twavio Team
+
+---
+Twavio - Gemeinsam reisen, gemeinsam erleben
+info@twavio.com
+https://twavio.com`;
+            
+            confirmationData.append('message', confirmationMessage);
+            
+            // Sende Bestätigungs-E-Mail (im Hintergrund, Fehler werden ignoriert)
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: confirmationData
+            }).catch(err => console.log('Bestätigungs-E-Mail konnte nicht gesendet werden:', err));
+        }
 
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
