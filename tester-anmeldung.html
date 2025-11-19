@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Melde dich als Beta-Tester für Twavio an und teste die App vor dem offiziellen Launch">
+    <title>Beta-Tester werden - Twavio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Base Colors */
+            --background: #F9F9F9;
+            --background-secondary: #F5F5F5;
+            --card: #ffffff;
+            --card-hover: #F0F8FF;
+            
+            /* Primary Brand Colors */
+            --primary-color: #3BB7B2;
+            --primary-light: #A7E0E3;
+            --primary-dark: #2A9D98;
+            
+            /* Secondary Colors */
+            --secondary-color: #FF8A65;
+            --secondary-light: #FFB299;
+            --secondary-dark: #FF7043;
+            
+            /* Text Colors */
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --text-light: #999999;
+            --text-inverse: #ffffff;
+            
+            /* Accent Colors */
+            --accent: #3BB7B2;
+            --accent-light: #A7E0E3;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #FF6B6B;
+            
+            /* Border Colors */
+            --border: #E0E0E0;
+            --border-light: #F0F0F0;
+            --border-dark: #CCCCCC;
+            
+            /* Background Colors */
+            --bg-light: #F9F9F9;
+            --bg-white: #ffffff;
+            
+            /* Shadow Colors */
+            --shadow-light-color: rgba(59, 183, 178, 0.08);
+            --shadow-medium-color: rgba(59, 183, 178, 0.12);
+            --shadow-dark-color: rgba(59, 183, 178, 0.16);
+            
+            /* Shadow System */
+            --shadow-light: 0 1px 2px var(--shadow-light-color);
+            --shadow-medium: 0 2px 4px var(--shadow-medium-color);
+            --shadow-large: 0 4px 8px var(--shadow-dark-color);
+            --shadow-xlarge: 0 8px 16px var(--shadow-dark-color);
+            --shadow: var(--shadow-large);
+            --shadow-lg: var(--shadow-xlarge);
+            
+            /* Gradient */
+            --gradient-start: #3BB7B2;
+            --gradient-end: #FF8A65;
+            --gradient-secondary-start: #A7E0E3;
+            --gradient-secondary-end: #FFB299;
+            
+            /* Signature Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--gradient-secondary-start) 0%, var(--gradient-secondary-end) 100%);
+            --gradient-subtle: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);
+            
+            /* Spacing System */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 20px;
+            --spacing-2xl: 24px;
+            --spacing-3xl: 32px;
+            --spacing-4xl: 40px;
+            --spacing-5xl: 48px;
+            
+            /* Border Radius */
+            --radius-button: 16px;
+            --radius-card: 20px;
+            --radius-input: 16px;
+            --radius-small: 12px;
+            --radius-medium: 12px;
+            --radius-large: 28px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding-top: 80px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .logo-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+        
+        /* Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .content-card {
+            background: var(--card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .required {
+            color: var(--error);
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-input);
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 183, 178, 0.1);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        
+        .checkbox-group a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-button);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(59, 183, 178, 0.25);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 183, 178, 0.35);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-input);
+            margin-bottom: 2rem;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .info-box {
+            background: var(--card-hover);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: var(--radius-small);
+        }
+        
+        .info-box p {
+            margin-bottom: 0;
+            color: var(--text-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-light);
+            transform: translateX(4px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#hero" class="logo"><img src="app-icon-new.png" alt="Twavio Logo" class="logo-img"><span class="logo-text">Twavio</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how-it-works">So funktioniert's</a></li>
+                <li><a href="index.html#download">Bald verfügbar</a></li>
+                <li><a href="tester-anmeldung.html">Beta-Tester werden</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="content-card">
+            <h1>🚀 Werde Beta-Tester</h1>
+            <p class="subtitle">Hilf uns, Twavio zu verbessern! Als Beta-Tester erhältst du frühen Zugang zur App und kannst aktiv an der Entwicklung mitwirken.</p>
+            
+            <div class="info-box">
+                <p><strong>Was erwartet dich als Beta-Tester?</strong></p>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: var(--text-dark);">
+                    <li>Früher Zugang zur Twavio App</li>
+                    <li>Möglichkeit, Feedback zu geben und Features mitzugestalten</li>
+                    <li>Exklusive Updates und Neuigkeiten</li>
+                    <li>Teilnahme an einer exklusiven Community</li>
+                </ul>
+            </div>
+            
+            <div class="success-message" id="success-message">
+                <strong>Vielen Dank für deine Anmeldung!</strong> Wir haben deine Daten erhalten und werden uns in Kürze bei dir melden.
+            </div>
+            
+            <form id="tester-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-Mail-Adresse <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefonnummer (optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="device">Welches Gerät nutzt du? <span class="required">*</span></label>
+                    <select id="device" name="device" required>
+                        <option value="">Bitte wählen</option>
+                        <option value="ios">iOS (iPhone/iPad)</option>
+                        <option value="android">Android</option>
+                        <option value="both">Beide</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivation">Warum möchtest du Beta-Tester werden? <span class="required">*</span></label>
+                    <textarea id="motivation" name="motivation" required placeholder="Erzähle uns, warum du Twavio testen möchtest..."></textarea>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. <span class="required">*</span></label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Ich möchte über Neuigkeiten und Updates per E-Mail informiert werden.</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Anmeldung absenden</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Twavio</h3>
+                <p>Gemeinsam reisen, gemeinsam erleben. Die moderne Social Travel App für iOS und Android.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
+                    <li><a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></li>
+                    <li><a href="konto-loeschen.html">Konto löschen</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <ul>
+                    <li>📧 info@twavio.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Twavio. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie-Banner (DSGVO/TTDSG konform) -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p><strong>Cookie-Hinweis</strong></p>
+                <p>Diese Website verwendet keine Cookies. Wir respektieren Ihre Privatsphäre und speichern keine Tracking-Daten. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="cookie-btn cookie-btn-primary">Verstanden</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text p {
+            margin: 0.5rem 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cookie-text a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-button);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .cookie-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                padding: 1rem;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+            }
+
+            .cookie-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        // Cookie-Banner Funktion
+        (function() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            
+            if (!cookieConsent) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookie-banner');
+                    if (banner) {
+                        banner.style.display = 'block';
+                    }
+                }, 500);
+            }
+
+            const acceptBtn = document.getElementById('cookie-accept');
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'true');
+                    const banner = document.getElementById('cookie-banner');
+                    if (banner) {
+                        banner.style.display = 'none';
+                    }
+                });
+            }
+        })();
+
+        // Form Submission
+        document.getElementById('tester-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hier würde normalerweise die Daten an einen Server gesendet werden
+            // Für jetzt zeigen wir nur eine Erfolgsmeldung
+            const form = this;
+            const successMessage = document.getElementById('success-message');
+            
+            // Simuliere Formularversand
+            form.style.display = 'none';
+            successMessage.classList.add('show');
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // In Produktion würde hier ein AJAX-Request oder Form-Submit erfolgen
+            // z.B.: fetch('/api/tester-signup', { method: 'POST', body: new FormData(form) })
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        }
+    </script>
+</body>
+</html>
+
