@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Redirect - Twavio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <p>Weiterleitung zur App...</p>
+    </div>
+    
+    <script>
+        // Hole URL-Parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const state = urlParams.get('state');
+        const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
+        
+        // Erstelle Deep Link zur App
+        if (code && state) {
+            // Erfolgreich - leite an App weiter
+            const deepLink = `twavioapp://oauth/callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
+            console.log('Redirecting to app:', deepLink);
+            
+            // Versuche Deep Link zu öffnen
+            window.location.href = deepLink;
+            
+            // Fallback: Falls Deep Link nicht funktioniert, zeige Anweisungen
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div class="container">
+                        <h2>Weiterleitung zur App</h2>
+                        <p>Falls die App nicht automatisch geöffnet wird, öffne die Twavio App manuell.</p>
+                        <p>Die Anmeldung wird dann automatisch fortgesetzt.</p>
+                    </div>
+                `;
+            }, 2000);
+        } else if (error) {
+            // Fehler - leite an App weiter
+            const errorParams = new URLSearchParams({
+                error: error,
+                ...(errorDescription && { error_description: errorDescription })
+            });
+            const deepLink = `twavioapp://oauth/callback?${errorParams.toString()}`;
+            console.log('Redirecting error to app:', deepLink);
+            
+            window.location.href = deepLink;
+            
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div class="container">
+                        <h2>Fehler bei der Anmeldung</h2>
+                        <p>Fehler: ${error}</p>
+                        <p>${errorDescription || ''}</p>
+                        <p>Bitte öffne die Twavio App und versuche es erneut.</p>
+                    </div>
+                `;
+            }, 2000);
+        } else {
+            // Keine Parameter - Fehler
+            document.body.innerHTML = `
+                <div class="container">
+                    <h2>Ungültige OAuth Redirect</h2>
+                    <p>Es wurden keine gültigen Parameter empfangen.</p>
+                    <p>Bitte versuche die Anmeldung erneut.</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+
