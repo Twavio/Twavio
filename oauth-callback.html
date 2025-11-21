@@ -48,6 +48,36 @@
         const error = urlParams.get('error');
         const errorDescription = urlParams.get('error_description');
         
+        // Funktion zum Öffnen des Deep Links mit mehreren Methoden
+        function openDeepLink(deepLink) {
+            console.log('Attempting to open deep link:', deepLink);
+            
+            // Methode 1: window.location.href (am zuverlässigsten)
+            try {
+                window.location.href = deepLink;
+            } catch (e) {
+                console.error('Method 1 failed:', e);
+            }
+            
+            // Methode 2: window.location.replace (als Fallback)
+            setTimeout(() => {
+                try {
+                    window.location.replace(deepLink);
+                } catch (e) {
+                    console.error('Method 2 failed:', e);
+                }
+            }, 100);
+            
+            // Methode 3: window.open (als letzter Fallback)
+            setTimeout(() => {
+                try {
+                    window.open(deepLink, '_self');
+                } catch (e) {
+                    console.error('Method 3 failed:', e);
+                }
+            }, 200);
+        }
+        
         // Erstelle Deep Link zur App
         if (code && state) {
             // Erfolgreich - leite an App weiter
@@ -55,7 +85,7 @@
             console.log('Redirecting to app:', deepLink);
             
             // Versuche Deep Link zu öffnen
-            window.location.href = deepLink;
+            openDeepLink(deepLink);
             
             // Fallback: Falls Deep Link nicht funktioniert, zeige Anweisungen
             setTimeout(() => {
@@ -64,6 +94,7 @@
                         <h2>Weiterleitung zur App</h2>
                         <p>Falls die App nicht automatisch geöffnet wird, öffne die Twavio App manuell.</p>
                         <p>Die Anmeldung wird dann automatisch fortgesetzt.</p>
+                        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">Falls die App bereits geöffnet ist, kehre zur App zurück.</p>
                     </div>
                 `;
             }, 2000);
@@ -76,7 +107,7 @@
             const deepLink = `twavioapp://oauth/callback?${errorParams.toString()}`;
             console.log('Redirecting error to app:', deepLink);
             
-            window.location.href = deepLink;
+            openDeepLink(deepLink);
             
             setTimeout(() => {
                 document.body.innerHTML = `
