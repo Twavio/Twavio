@@ -88,13 +88,25 @@
         .phone {
             position: absolute;
             width: 270px;
-            aspect-ratio: 9 / 19.5;
-            border-radius: 40px;
-            padding: 10px;
+            aspect-ratio: 750 / 1673;
+            box-sizing: content-box;
+            border-radius: 44px;
+            padding: 9px;
             background: var(--ink-900);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-lg), inset 0 0 0 2px rgba(255,255,255,0.08);
         }
-        .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 31px; display: block; }
+        .phone::after {
+            content: '';
+            position: absolute;
+            top: calc(9px + 1.6%);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 2.4%;
+            border-radius: 999px;
+            background: var(--ink-900);
+        }
+        .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 36px; display: block; background: #fff; }
         .phone.front { right: 12%; top: 0; z-index: 2; }
         .phone.back { right: 50%; top: 70px; transform: rotate(-6deg); opacity: 0.96; }
 
@@ -120,14 +132,23 @@
         .feature-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
         .feature-card p { color: var(--ink-500); font-size: 0.98rem; }
 
-        /* ---------- Showcase ---------- */
-        .showcase { background: var(--ink-50); }
-        .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: start; }
-        .showcase-item { text-align: center; }
-        .showcase-item .phone { position: relative; margin: 0 auto 1.5rem; width: 250px; }
-        .showcase-item:nth-child(2) .phone { transform: translateY(-24px); }
-        .showcase-item h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
-        .showcase-item p { color: var(--ink-500); max-width: 280px; margin: 0 auto; }
+        /* ---------- Story: So funktioniert Twavio ---------- */
+        .story { background: var(--ink-50); }
+        .story-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; align-items: start; }
+        .story-step { text-align: center; }
+        .story-step .phone { position: relative; width: auto; max-width: 220px; margin: 0 auto 1.75rem; }
+        .story-num {
+            display: inline-grid; place-items: center;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: var(--gradient-brand);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+        }
+        .story-step h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
+        .story-step p { color: var(--ink-500); max-width: 260px; margin: 0 auto; font-size: 0.97rem; }
 
         /* ---------- Cockpit ---------- */
         .cockpit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
@@ -222,6 +243,7 @@
             .phone.front { right: 4%; width: 230px; }
             .phone.back { right: auto; left: 4%; width: 220px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .story-grid { grid-template-columns: repeat(2, 1fr); row-gap: 3.5rem; }
             .cockpit-grid { grid-template-columns: 1fr; }
             .cockpit-phones { height: 520px; max-width: 460px; margin: 0 auto; width: 100%; }
             .cockpit-phones .phone.front { right: 4%; width: 230px; }
@@ -231,8 +253,9 @@
         }
         @media (max-width: 680px) {
             section { padding: 4.5rem 1.25rem; }
-            .features-grid, .showcase-grid { grid-template-columns: 1fr; }
-            .showcase-item:nth-child(2) .phone { transform: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .story-grid { grid-template-columns: 1fr; }
+            .story-step .phone { max-width: 240px; }
             .phones { height: 460px; }
             .phone.front { width: 200px; }
             .phone.back { width: 190px; top: 50px; }
@@ -279,8 +302,8 @@
             <a href="#hero" class="logo"><img src="app-icon-new.png" alt="Twavio Logo" class="logo-img"><span class="logo-text">Twavio</span></a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#cockpit">Cockpit</a></li>
                 <li><a href="#how-it-works">So funktioniert's</a></li>
+                <li><a href="#cockpit">Cockpit</a></li>
                 <li><a href="#download">Bald verfügbar</a></li>
                 <li><a href="#contact">Kontakt</a></li>
                 <li><a href="tester-anmeldung.html" class="nav-cta">Beta-Tester werden</a></li>
@@ -306,8 +329,8 @@
                                     </div>
             </div>
             <div class="phones" aria-hidden="true">
-                <div class="phone back"><img src="images/app-reise-detail.jpg" alt="" loading="eager"></div>
-                <div class="phone front"><img src="images/app-cockpit.jpg" alt="" loading="eager"></div>
+                <div class="phone back"><img src="images/app-cockpit.jpg" alt="" loading="eager"></div>
+                <div class="phone front"><img src="images/app-entdecken.jpg" alt="" loading="eager"></div>
             </div>
         </div>
     </section>
@@ -356,6 +379,51 @@
         </div>
     </section>
 
+    <!-- So funktioniert Twavio -->
+    <section id="how-it-works" class="story">
+        <div class="container">
+            <div class="section-head">
+                <span class="eyebrow">So funktioniert Twavio</span>
+                <h2>Von der Idee zur Reisegruppe</h2>
+                <p>Twavio bringt Leute zusammen, die wirklich mitkommen – und gibt euch alles, um die Reise gemeinsam zu planen.</p>
+            </div>
+            <div class="story-grid">
+                <article class="story-step">
+                    <div class="phone"><img src="images/app-entdecken.jpg" alt="Twavio App: Startseite mit nächster Reise, beliebten Zielen und Reisen in der Nähe" loading="lazy"></div>
+                    <div class="story-text">
+                        <span class="story-num">1</span>
+                        <h3>Entdecken</h3>
+                        <p>Reisen in deiner Nähe und passend zu deinen Interessen – mit Match-Wert. Oder du stellst selbst eine Reise ein.</p>
+                    </div>
+                </article>
+                <article class="story-step">
+                    <div class="phone"><img src="images/app-anfrage.jpg" alt="Twavio App: verbindliche Anfrage mit Vorstellung und Bestätigungen" loading="lazy"></div>
+                    <div class="story-text">
+                        <span class="story-num">2</span>
+                        <h3>Verbindlich anfragen</h3>
+                        <p>Kurz vorstellen, Fragen der Reiseleitung beantworten, Zeitraum und Budget bestätigen – kein Ein-Klick-Spam.</p>
+                    </div>
+                </article>
+                <article class="story-step">
+                    <div class="phone"><img src="images/app-zusagen.jpg" alt="Twavio App: Reise mit reserviertem Platz und Button Fest zusagen" loading="lazy"></div>
+                    <div class="story-text">
+                        <span class="story-num">3</span>
+                        <h3>Fest zusagen</h3>
+                        <p>Angenommen? Dann ist dein Platz reserviert, bis du innerhalb der Frist fest zusagst. So weiß jede:r, wer wirklich dabei ist.</p>
+                    </div>
+                </article>
+                <article class="story-step">
+                    <div class="phone"><img src="images/app-cockpit.jpg" alt="Twavio App: Gruppen-Cockpit mit nächsten Terminen und Crew" loading="lazy"></div>
+                    <div class="story-text">
+                        <span class="story-num">4</span>
+                        <h3>Gemeinsam planen</h3>
+                        <p>Im Cockpit: Termine, Crew, Aufgaben, Kasse und Abstimmungen – live für alle, die fest dabei sind.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Gruppen-Cockpit -->
     <section id="cockpit">
         <div class="container cockpit-grid">
@@ -386,52 +454,6 @@
             <div class="cockpit-phones" aria-hidden="true">
                 <div class="phone back"><img src="images/app-kasse.jpg" alt="" loading="lazy"></div>
                 <div class="phone front"><img src="images/app-pinnwand.jpg" alt="" loading="lazy"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- App-Einblicke -->
-    <section class="showcase">
-        <div class="container">
-            <div class="section-head">
-                <span class="eyebrow">Einblicke</span>
-                <h2>So fühlt sich Twavio an</h2>
-                <p>Klar, schnell und gemacht für unterwegs. <span style="display:block;margin-top:0.35rem;font-size:0.9rem;color:var(--ink-400)">Screenshots aus der aktuellen Beta-Version – Details können sich bis zum Start noch ändern.</span></p>
-            </div>
-            <div class="showcase-grid">
-                <div class="showcase-item">
-                    <div class="phone"><img src="images/app-anfrage.jpg" alt="Twavio App: verbindliche Anfrage mit Vorstellung und Bestätigungen" loading="lazy"></div>
-                    <h3>Verbindlich anfragen</h3>
-                    <p>Kurz vorstellen, Fragen der Reiseleitung beantworten, Zeitraum und Budget bestätigen.</p>
-                </div>
-                <div class="showcase-item">
-                    <div class="phone"><img src="images/app-privat.jpg" alt="Twavio App: private Reise nach Tromsø" loading="lazy"></div>
-                    <h3>Privat reisen</h3>
-                    <p>Private Reisen findet nur, wer deinen Link oder Code hat – perfekt für den Freundeskreis.</p>
-                </div>
-                <div class="showcase-item">
-                    <div class="phone"><img src="images/app-abstimmen.jpg" alt="Twavio App: Abstimmung im Reise-Cockpit" loading="lazy"></div>
-                    <h3>Gemeinsam entscheiden</h3>
-                    <p>Abstimmungen, Aufgaben und Kasse im Cockpit – live für die ganze Gruppe.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- So funktioniert's -->
-    <section id="how-it-works">
-        <div class="container">
-            <div class="section-head">
-                <span class="eyebrow">In 5 Schritten</span>
-                <h2>So funktioniert's</h2>
-                <p>Von der Anfrage bis zur Abrechnung – in fünf Schritten zur Reisegruppe, auf die du dich verlassen kannst</p>
-            </div>
-            <div class="steps">
-                <div class="step"><div class="step-number">1</div><h3>Registrieren</h3><p>Konto anlegen und Profil mit Interessen, Sprachen und Foto ausfüllen</p></div>
-                <div class="step"><div class="step-number">2</div><h3>Reise finden</h3><p>Passende Reise suchen – oder selbst eine erstellen, öffentlich oder privat</p></div>
-                <div class="step"><div class="step-number">3</div><h3>Anfragen</h3><p>Kurz vorstellen und verbindlich anfragen – oder per Link eingeladen werden</p></div>
-                <div class="step"><div class="step-number">4</div><h3>Fest zusagen</h3><p>Nach der Annahme innerhalb der Frist fest zusagen – dann bist du in der Crew</p></div>
-                <div class="step"><div class="step-number">5</div><h3>Planen &amp; erleben</h3><p>Im Cockpit gemeinsam planen, losfahren und danach Mitreisende bewerten</p></div>
             </div>
         </div>
     </section>
