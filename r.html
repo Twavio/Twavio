@@ -5,76 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <meta name="description" content="Du wurdest zu einer Reise auf Twavio eingeladen.">
-    <meta property="og:title" content="Du wurdest zu einer Reise eingeladen – Twavio">
-    <meta property="og:description" content="Öffne die Einladung in der Twavio-App und frag an, ob du mitkommen kannst.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Twavio">
+    <meta property="og:title" content="Du wurdest zu einer Reise eingeladen ✈️">
+    <meta property="og:description" content="Schau dir die Reise an und frag in der Twavio-App an, ob du mitkommen kannst.">
+    <meta property="og:image" content="https://twavio.com/images/og-einladung.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Einladung zu einer Reise - Twavio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="stylesheet" href="twavio.css">
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body, h1, p { margin: 0; }
         .invite-wrap {
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 16px 48px;
-            background: linear-gradient(135deg, #EAF8F7 0%, #FFF3EE 100%);
+            min-height: calc(100vh - 72px);
+            padding: 28px 16px 56px;
+            background: linear-gradient(160deg, #EAF8F7 0%, #F7FAFA 45%, #FFF3EE 100%);
         }
-        .invite-card {
-            width: 100%;
-            max-width: 460px;
+        .invite-col { max-width: 520px; margin: 0 auto; }
+        .invite-kicker {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 999px;
+            background: #fff; color: #1F7F7B;
+            font-weight: 700; font-size: 0.85rem;
+            box-shadow: 0 4px 16px rgba(13, 19, 33, 0.06);
+            margin-bottom: 16px;
+        }
+        .trip-card {
             background: #fff;
             border-radius: 28px;
-            padding: 36px 28px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(13, 19, 33, 0.10);
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(13, 19, 33, 0.12);
         }
-        .invite-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            background: linear-gradient(135deg, #3BB7B2, #FF8A65);
+        .trip-hero {
+            position: relative;
+            aspect-ratio: 4 / 3.1;
+            background: #CDEFEE center / cover no-repeat;
         }
-        .invite-card h1 {
-            font-size: 1.7rem;
-            line-height: 1.2;
-            margin-bottom: 10px;
+        .trip-hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(13,19,33,0.25) 0%, rgba(13,19,33,0) 30%, rgba(13,19,33,0.1) 55%, rgba(13,19,33,0.82) 100%);
         }
-        .invite-card p {
-            color: #5b6474;
-            line-height: 1.6;
+        .trip-hero-top, .trip-hero-bottom { position: absolute; left: 20px; right: 20px; z-index: 1; }
+        .trip-hero-top { top: 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .trip-hero-bottom { bottom: 20px; color: #fff; }
+        .glass-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 12px; border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            color: #fff; font-size: 0.82rem; font-weight: 600;
+            backdrop-filter: blur(8px);
         }
-        .invite-code {
-            margin: 24px 0 8px;
-            padding: 16px;
-            border-radius: 16px;
-            background: #F4F6F8;
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 0.35em;
-            color: #0D1321;
+        .trip-title { font-size: clamp(2rem, 8vw, 2.7rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+        .trip-sub { opacity: 0.9; margin-top: 4px; font-size: 1.02rem; }
+        .trip-body { padding: 22px 22px 26px; }
+        .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .fact { background: #F5F7F8; border-radius: 16px; padding: 12px; min-width: 0; }
+        .fact-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #8A93A2; }
+        .fact-value { font-weight: 700; margin-top: 4px; color: #0D1321; font-size: 0.98rem; line-height: 1.25; }
+        .fact-detail { font-size: 0.8rem; color: #5B6474; margin-top: 2px; }
+        .trip-line { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: #5B6474; font-size: 0.95rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .tag { padding: 6px 12px; border-radius: 999px; background: #EAF8F7; color: #1F7F7B; font-weight: 600; font-size: 0.85rem; }
+        .trip-desc { margin-top: 16px; color: #3C4454; line-height: 1.6; }
+        .leader { display: flex; align-items: center; gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid #EDF0F2; }
+        .leader-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: grid; place-items: center;
+            background: #CDEFEE; color: #1F7F7B; font-weight: 800; font-size: 1.1rem;
         }
-        .invite-hint {
-            font-size: 0.9rem;
+        .leader-name { font-weight: 700; color: #0D1321; }
+        .leader-sub { font-size: 0.85rem; color: #5B6474; }
+        .verified { display: inline-flex; align-items: center; gap: 4px; color: #1F7F7B; font-weight: 700; font-size: 0.8rem; margin-left: 6px; }
+        .actions { display: grid; gap: 12px; margin-top: 22px; }
+        .actions .btn { width: 100%; justify-content: center; text-align: center; }
+        .code-box {
+            margin-top: 16px; padding: 14px 16px;
+            border-radius: 16px; background: #F5F7F8;
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
         }
-        .invite-actions {
-            display: grid;
-            gap: 12px;
-            margin-top: 24px;
+        .code-box small { color: #5B6474; display: block; font-size: 0.8rem; }
+        .code { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.3em; color: #0D1321; }
+        .copy-btn { border: 1px solid #DCE1E6; background: #fff; border-radius: 999px; padding: 8px 14px; font-weight: 700; cursor: pointer; color: #0D1321; font: inherit; font-size: 0.85rem; }
+        .steps-mini { margin-top: 28px; display: grid; gap: 14px; }
+        .step-mini { display: flex; gap: 12px; align-items: flex-start; }
+        .step-mini b {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+            display: grid; place-items: center;
+            background: linear-gradient(135deg, #3BB7B2, #FF8A65); color: #fff; font-size: 0.85rem;
         }
-        .invite-actions .btn {
-            justify-content: center;
-            width: 100%;
+        .step-mini p { color: #3C4454; }
+        .step-mini strong { color: #0D1321; }
+        .skeleton { background: linear-gradient(90deg, #EEF2F4 25%, #F7F9FA 50%, #EEF2F4 75%); background-size: 200% 100%; animation: sk 1.2s infinite; border-radius: 12px; }
+        @keyframes sk { to { background-position: -200% 0; } }
+        .hidden { display: none !important; }
+        .simple-card { background: #fff; border-radius: 28px; padding: 32px 24px; text-align: center; box-shadow: 0 24px 60px rgba(13, 19, 33, 0.1); }
+        .simple-card h1 { font-size: 1.6rem; margin: 12px 0 8px; }
+        .simple-card p { color: #5B6474; line-height: 1.6; }
+        @media (max-width: 420px) {
+            .facts { grid-template-columns: 1fr 1fr; }
+            .facts .fact:last-child { grid-column: span 2; }
         }
-        .invite-missing {
-            display: none;
-        }
+        @media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
     </style>
 </head>
 <body>
@@ -85,40 +123,191 @@
     </nav>
 
     <main class="invite-wrap">
-        <div class="invite-card">
-            <div class="invite-icon" aria-hidden="true">✈️</div>
-            <h1>Du wurdest zu einer Reise eingeladen</h1>
-            <p>Öffne die Einladung in der Twavio-App, schau dir die Reise an und frag an, ob du mitkommen kannst.</p>
+        <div class="invite-col">
+            <span class="invite-kicker">✈️ Du wurdest eingeladen</span>
 
-            <div id="invite-found">
-                <div class="invite-code" id="invite-code" aria-label="Einladungscode">······</div>
-                <p class="invite-hint">Einladungscode – in der App unter „Deine Reisen“ → 🔑 eingeben</p>
-                <div class="invite-actions">
-                    <a class="btn btn-primary" id="open-app" href="travelmateapp://r">In der App öffnen</a>
-                    <a class="btn btn-secondary" href="tester-anmeldung.html">App noch nicht installiert? Jetzt Tester werden</a>
+            <!-- Laden -->
+            <div id="state-loading" class="trip-card" aria-busy="true">
+                <div class="skeleton" style="aspect-ratio: 4 / 3.1; border-radius: 0;"></div>
+                <div class="trip-body">
+                    <div class="skeleton" style="height: 72px;"></div>
+                    <div class="skeleton" style="height: 18px; margin-top: 16px; width: 70%;"></div>
+                    <div class="skeleton" style="height: 52px; margin-top: 22px; border-radius: 999px;"></div>
                 </div>
             </div>
 
-            <div id="invite-missing" class="invite-missing">
-                <p style="margin-top: 20px;">Dieser Link enthält keinen gültigen Einladungscode. Frag die Person, die dich eingeladen hat, nach dem Code.</p>
-                <div class="invite-actions">
-                    <a class="btn btn-primary" href="index.html">Zu Twavio</a>
+            <!-- Reise -->
+            <article id="state-trip" class="trip-card hidden">
+                <div class="trip-hero" id="trip-image">
+                    <div class="trip-hero-top" id="trip-chips"></div>
+                    <div class="trip-hero-bottom">
+                        <div class="trip-title" id="trip-title"></div>
+                        <div class="trip-sub" id="trip-sub"></div>
+                    </div>
                 </div>
+                <div class="trip-body">
+                    <div class="facts">
+                        <div class="fact"><div class="fact-label">Zeitraum</div><div class="fact-value" id="f-date"></div><div class="fact-detail" id="f-nights"></div></div>
+                        <div class="fact"><div class="fact-label">Gruppe</div><div class="fact-value" id="f-group"></div><div class="fact-detail" id="f-group-sub"></div></div>
+                        <div class="fact"><div class="fact-label">Budget</div><div class="fact-value" id="f-budget"></div><div class="fact-detail">pro Person</div></div>
+                    </div>
+                    <div class="trip-line" id="trip-travel"></div>
+                    <div class="tags" id="trip-tags"></div>
+                    <p class="trip-desc" id="trip-desc"></p>
+                    <div class="leader" id="trip-leader">
+                        <div class="leader-avatar" id="leader-initial"></div>
+                        <div>
+                            <div class="leader-name"><span id="leader-name"></span><span class="verified hidden" id="leader-verified">✓ Verifiziert</span></div>
+                            <div class="leader-sub">Reiseleitung</div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a class="btn btn-primary open-app" href="travelmateapp://r">In der App ansehen &amp; anfragen</a>
+                        <a class="btn btn-secondary" href="tester-anmeldung.html">Noch keine App? Tester werden</a>
+                    </div>
+                    <div class="code-box">
+                        <div><small>Einladungscode – in der App unter „Deine Reisen“ → 🔑</small><span class="code code-value">······</span></div>
+                        <button class="copy-btn" type="button">Kopieren</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Nur Code (Vorschau nicht verfügbar) -->
+            <div id="state-code" class="simple-card hidden">
+                <div style="font-size: 2.4rem;" aria-hidden="true">✈️</div>
+                <h1>Du wurdest zu einer Reise eingeladen</h1>
+                <p>Öffne die Einladung in der Twavio-App, schau dir die Reise an und frag an, ob du mitkommen kannst.</p>
+                <div class="code-box" style="justify-content: center; flex-direction: column; text-align: center;">
+                    <small>Einladungscode</small><span class="code code-value">······</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-primary open-app" href="travelmateapp://r">In der App öffnen</a>
+                    <a class="btn btn-secondary" href="tester-anmeldung.html">Noch keine App? Tester werden</a>
+                </div>
+            </div>
+
+            <!-- Ungültig -->
+            <div id="state-missing" class="simple-card hidden">
+                <div style="font-size: 2.4rem;" aria-hidden="true">🧭</div>
+                <h1>Einladung nicht gefunden</h1>
+                <p>Dieser Link enthält keinen gültigen Einladungscode oder die Reise wurde abgesagt. Frag die Person, die dich eingeladen hat, nach einem neuen Link.</p>
+                <div class="actions"><a class="btn btn-primary" href="index.html">Twavio entdecken</a></div>
+            </div>
+
+            <div class="steps-mini" id="steps">
+                <div class="step-mini"><b>1</b><p><strong>App öffnen</strong> – die Einladung führt dich direkt zur Reise.</p></div>
+                <div class="step-mini"><b>2</b><p><strong>Kurz vorstellen</strong> – die Reiseleitung sieht, wer anfragt, und nimmt an.</p></div>
+                <div class="step-mini"><b>3</b><p><strong>Fest zusagen</strong> – dann bist du in der Crew und plant im Cockpit mit.</p></div>
             </div>
         </div>
     </main>
 
     <script>
         (function () {
-            var raw = new URLSearchParams(window.location.search).get('c') || '';
+            var API = 'https://firestore.googleapis.com/v1/projects/travelmate-ec582/databases/(default)/documents/einladungsVorschau/';
+            var KEY = 'AIzaSyDgcXrfYZvGaD8T86A7OAV-nBLbbOttoRQ';
+            var IMAGES = ['abenteuer','barcelona','berge','berlin','familie','kultur','london','natur','newyork','paris','party','prag','reise','rom','stadt','strand','wellness'];
+            var BUDGET = { low: ['€', 'Günstig'], mid: ['€€', 'Mittel'], high: ['€€€', 'Komfort'] };
+            var TRANSPORT = { auto: 'Auto', zug: 'Zug', flug: 'Flug', bus: 'Bus' };
+            var MONTHS = ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'];
+
+            function $(id) { return document.getElementById(id); }
+            function show(id) { ['state-loading', 'state-trip', 'state-code', 'state-missing'].forEach(function (s) { $(s).classList.toggle('hidden', s !== id); }); }
+            function text(id, value) { $(id).textContent = value || ''; }
+
+            var raw = new URLSearchParams(location.search).get('c') || '';
             var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
-            if (code.length < 4) {
-                document.getElementById('invite-found').style.display = 'none';
-                document.getElementById('invite-missing').style.display = 'block';
-                return;
+            if (code.length < 4) { show('state-missing'); $('steps').classList.add('hidden'); document.querySelector('.invite-kicker').classList.add('hidden'); return; }
+
+            document.querySelectorAll('.code-value').forEach(function (el) { el.textContent = code; });
+            document.querySelectorAll('.open-app').forEach(function (el) { el.href = 'travelmateapp://r?c=' + encodeURIComponent(code); });
+            document.querySelector('.copy-btn').addEventListener('click', function (e) {
+                if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () { e.target.textContent = 'Kopiert ✓'; });
+            });
+
+            function parseDate(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+            function dateRange(a, b) {
+                var s = parseDate(a), e = parseDate(b) || s;
+                if (!s) return 'Offen';
+                var year = e.getFullYear() !== new Date().getFullYear() ? ' ' + e.getFullYear() : '';
+                if (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear())
+                    return (s.getDate() === e.getDate() ? '' : s.getDate() + '.–') + e.getDate() + '. ' + MONTHS[e.getMonth()] + year;
+                return s.getDate() + '. ' + MONTHS[s.getMonth()] + ' – ' + e.getDate() + '. ' + MONTHS[e.getMonth()] + year;
             }
-            document.getElementById('invite-code').textContent = code;
-            document.getElementById('open-app').href = 'travelmateapp://r?c=' + encodeURIComponent(code);
+            function field(f, k) {
+                var v = f[k]; if (!v) return null;
+                if ('stringValue' in v) return v.stringValue;
+                if ('integerValue' in v) return Number(v.integerValue);
+                if ('doubleValue' in v) return v.doubleValue;
+                if ('booleanValue' in v) return v.booleanValue;
+                if ('arrayValue' in v) return (v.arrayValue.values || []).map(function (x) { return x.stringValue; }).filter(Boolean);
+                return null;
+            }
+
+            function render(f) {
+                var t = function (k) { return field(f, k); };
+                // Bild: eigenes Titelbild (Cloudinary) oder eigene Illustration
+                var img = t('bildUrl');
+                if (!(img && /^https:\/\/res\.cloudinary\.com\//.test(img))) {
+                    var key = IMAGES.indexOf(t('bildKey')) >= 0 ? t('bildKey') : 'reise';
+                    img = 'images/reise/' + key + '.jpg';
+                }
+                $('trip-image').style.backgroundImage = 'url("' + img.replace(/"/g, '') + '")';
+
+                text('trip-title', t('zielort'));
+                text('trip-sub', t('startort') ? 'ab ' + t('startort') : '');
+                document.title = 'Mit nach ' + t('zielort') + '? – Twavio';
+
+                var chips = $('trip-chips');
+                var s = parseDate(t('startdatum'));
+                if (s) {
+                    var days = Math.round((s - new Date(new Date().toDateString())) / 86400000);
+                    if (days >= 0) chips.appendChild(chip(days === 0 ? 'Startet heute' : days === 1 ? 'Morgen' : 'In ' + days + ' Tagen', '🕒'));
+                }
+                if (t('istOeffentlich') === false) chips.appendChild(chip('Private Reise', '🔒'));
+
+                text('f-date', dateRange(t('startdatum'), t('enddatum')));
+                var e = parseDate(t('enddatum'));
+                var nights = s && e ? Math.round((e - s) / 86400000) : null;
+                text('f-nights', nights > 0 ? nights + (nights === 1 ? ' Nacht' : ' Nächte') : '');
+
+                var max = t('maxTeilnehmer'), dabei = t('dabei');
+                text('f-group', dabei && max ? dabei + ' von ' + max : max ? 'bis ' + max : (dabei || 1) + ' dabei');
+                var frei = max && dabei ? Math.max(max - dabei, 0) : null;
+                text('f-group-sub', frei === null ? 'Personen' : frei === 0 ? 'Aktuell voll' : frei === 1 ? '1 Platz frei' : frei + ' Plätze frei');
+
+                var b = BUDGET[t('budget')];
+                text('f-budget', b ? b[0] + ' ' + b[1] : 'Offen');
+
+                var vm = TRANSPORT[t('verkehrsmittel')];
+                text('trip-travel', t('gemeinsameAnreise') === false ? '📍 Treffen vor Ort'
+                    : '🧳 Gemeinsame Anreise' + (vm ? ' per ' + vm : '') + (t('startort') ? ' ab ' + t('startort') : ''));
+
+                var tags = $('trip-tags');
+                (t('tags') || []).forEach(function (tag) { var el = document.createElement('span'); el.className = 'tag'; el.textContent = tag; tags.appendChild(el); });
+
+                text('trip-desc', t('beschreibung'));
+                var leader = t('leitung');
+                if (leader) {
+                    text('leader-name', leader);
+                    text('leader-initial', leader.charAt(0).toUpperCase());
+                    $('leader-verified').classList.toggle('hidden', !t('leitungVerifiziert'));
+                } else {
+                    $('trip-leader').classList.add('hidden');
+                }
+                show('state-trip');
+            }
+
+            function chip(label, icon) { var el = document.createElement('span'); el.className = 'glass-chip'; el.textContent = icon + ' ' + label; return el; }
+
+            fetch(API + encodeURIComponent(code) + '?key=' + KEY)
+                .then(function (r) { if (r.status === 404) throw new Error('404'); if (!r.ok) throw new Error('fail'); return r.json(); })
+                .then(function (doc) { render(doc.fields || {}); })
+                .catch(function (err) {
+                    if (err.message === '404') { show('state-missing'); $('steps').classList.add('hidden'); document.querySelector('.invite-kicker').classList.add('hidden'); }
+                    else show('state-code');
+                });
         })();
     </script>
 </body>
