@@ -129,6 +129,21 @@
         .showcase-item h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
         .showcase-item p { color: var(--ink-500); max-width: 280px; margin: 0 auto; }
 
+        /* ---------- Cockpit ---------- */
+        .cockpit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+        .cockpit-grid h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); font-weight: 800; margin: 1rem 0 0.9rem; }
+        .cockpit-grid > div > p { color: var(--ink-500); font-size: 1.125rem; }
+        .module-list { list-style: none; display: grid; gap: 1.1rem; margin-top: 2rem; }
+        .module-list li { display: flex; gap: 1rem; align-items: flex-start; }
+        .module-list .icon-badge { width: 44px; height: 44px; border-radius: 14px; margin: 0; flex-shrink: 0; }
+        .module-list li:nth-child(even) .icon-badge { background: var(--coral-50); color: var(--coral-700); }
+        .module-list h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
+        .module-list p { color: var(--ink-500); font-size: 0.97rem; }
+        .cockpit-phones { position: relative; height: 600px; }
+        .cockpit-phones .phone.front { right: 6%; top: 0; }
+        .cockpit-phones .phone.back { right: 46%; top: 70px; transform: rotate(-6deg); }
+        .note { font-size: 0.9rem !important; color: var(--ink-400) !important; margin-top: 1.5rem; }
+
         /* ---------- Steps ---------- */
         .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; counter-reset: step; position: relative; }
         .steps::before {
@@ -207,6 +222,10 @@
             .phone.front { right: 4%; width: 230px; }
             .phone.back { right: auto; left: 4%; width: 220px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .cockpit-grid { grid-template-columns: 1fr; }
+            .cockpit-phones { height: 520px; max-width: 460px; margin: 0 auto; width: 100%; }
+            .cockpit-phones .phone.front { right: 4%; width: 230px; }
+            .cockpit-phones .phone.back { right: auto; left: 4%; width: 220px; }
             .steps { grid-template-columns: 1fr; gap: 1.75rem; }
             .steps::before { display: none; }
         }
@@ -217,6 +236,9 @@
             .phones { height: 460px; }
             .phone.front { width: 200px; }
             .phone.back { width: 190px; top: 50px; }
+            .cockpit-phones { height: 460px; }
+            .cockpit-phones .phone.front { width: 200px; }
+            .cockpit-phones .phone.back { width: 190px; top: 50px; }
             .audience-card { min-width: 100%; }
             .cta-card { padding: 3.5rem 1.5rem; border-radius: 24px; }
         }
@@ -242,6 +264,11 @@
             <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></g></symbol>
             <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M16 13h2M3 10h18M6 6V5a2 2 0 0 1 2-2h9"/></g></symbol>
             <symbol id="i-backpack" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M9 4.5V3h6v1.5M9 14h6v4H9z"/></g></symbol>
+            <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6l-1 5 3 3v2H7v-2l3-3z"/><path d="M12 14v7"/></g></symbol>
+            <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="m7 10 2 2 3-3M7 16h.01M12 16h5M14 11h3"/></g></symbol>
+            <symbol id="i-vote" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 20V12M12 20V5M18 20v-5"/></g></symbol>
+            <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></symbol>
+            <symbol id="i-share" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></g></symbol>
             <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></g></symbol>
         </defs>
     </svg>
@@ -252,6 +279,7 @@
             <a href="#hero" class="logo"><img src="app-icon-new.png" alt="Twavio Logo" class="logo-img"><span class="logo-text">Twavio</span></a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#features">Features</a></li>
+                <li><a href="#cockpit">Cockpit</a></li>
                 <li><a href="#how-it-works">So funktioniert's</a></li>
                 <li><a href="#download">Bald verfügbar</a></li>
                 <li><a href="#contact">Kontakt</a></li>
@@ -267,7 +295,7 @@
             <div>
                 <span class="eyebrow"><span class="dot"></span>Beta-Anmeldung geöffnet</span>
                 <h1>Gemeinsam reisen, <span class="gradient-text">gemeinsam erleben</span></h1>
-                <p class="hero-lead">Finde deine perfekten Reisebegleiter und teile unvergessliche Abenteuer. Twavio verbindet Reisende, die dieselbe Leidenschaft für das Entdecken teilen.</p>
+                <p class="hero-lead">Finde Leute, die wirklich mitkommen – und plant alles an einem Ort: von der verbindlichen Zusage über Unterkunft und Tickets bis zur geteilten Kasse.</p>
                 <div class="hero-actions">
                     <a href="tester-anmeldung.html" class="btn btn-primary">Beta-Tester werden</a>
                     <a href="#features" class="btn btn-secondary">Mehr erfahren</a>
@@ -278,8 +306,8 @@
                                     </div>
             </div>
             <div class="phones" aria-hidden="true">
-                <div class="phone back"><img src="images/app-reise-vorschau.jpg" alt="" loading="eager"></div>
-                <div class="phone front"><img src="images/app-suche.jpg" alt="" loading="eager"></div>
+                <div class="phone back"><img src="images/app-reise-detail.jpg" alt="" loading="eager"></div>
+                <div class="phone front"><img src="images/app-cockpit.jpg" alt="" loading="eager"></div>
             </div>
         </div>
     </section>
@@ -297,33 +325,67 @@
                 <div class="feature-card">
                     <div class="icon-badge"><svg width="26" height="26"><use href="#i-plane"/></svg></div>
                     <h3>Reisen erstellen</h3>
-                    <p>Erstelle detaillierte Reisepläne mit Start- und Zielort, Zeitraum und Reisevorlieben. Wähle aus verschiedenen Reisearten und entscheide, ob ihr gemeinsam anreist oder euch vor Ort trefft.</p>
+                    <p>Ziel, Zeitraum, Budget und Reiseart festlegen, gemeinsame Anreise oder Treffen vor Ort wählen – öffentlich für alle oder privat nur für deine Leute.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-badge"><svg width="26" height="26"><use href="#i-search"/></svg></div>
-                    <h3>Intelligente Suche</h3>
-                    <p>Schnellsuche nach Zielort oder erweiterte Suche mit Filtern. Finde passende Reisen basierend auf Zeitraum, Reiseart, Gruppengröße und erhalte personalisierte Empfehlungen.</p>
+                    <h3>Suche &amp; Match</h3>
+                    <p>Filtere nach Ziel, Zeitraum, Reisestil und Budget. Ein Match-Wert zeigt dir, wie gut eine Reise zu dir passt – und warum: gemeinsame Interessen, Sprachen, Budget.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-user"/></svg></div>
-                    <h3>Profil &amp; Verifizierung</h3>
-                    <p>Erstelle ein ausführliches Profil mit Foto, Interessen und Sprachen. Verknüpfe Social Media Accounts und verifiziere dein Profil für mehr Vertrauen.</p>
+                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-check"/></svg></div>
+                    <h3>Verbindliche Zusagen</h3>
+                    <p>Anfragen mit kurzer Vorstellung statt Ein-Klick. Wer angenommen wird, sagt innerhalb einer Frist fest zu. So weiß die Reiseleitung, wer wirklich mitkommt.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-chat"/></svg></div>
-                    <h3>Kommunikation</h3>
-                    <p>Sende Reiseanfragen, chatte mit Mitreisenden in Gruppen- oder Privat-Chats und verwalte deine Kontakte. Alles an einem Ort.</p>
+                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-pin"/></svg></div>
+                    <h3>Gruppen-Cockpit</h3>
+                    <p>Pinnwand für Unterkunft und Tickets, Aufgaben und Packliste, gemeinsame Kasse und Abstimmungen – alles, was sonst über drei Apps verteilt ist.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-spark"/></svg></div>
-                    <h3>Smart Matching</h3>
-                    <p>Intelligente Matching-Algorithmen finden passende Mitreisende basierend auf Interessen und Reisevorlieben für die perfekte Reisegemeinschaft.</p>
+                    <div class="icon-badge"><svg width="26" height="26"><use href="#i-share"/></svg></div>
+                    <h3>Einladen &amp; Teilen</h3>
+                    <p>Jede Reise hat einen Einladungslink und -code. Teile Reisen, Abrechnungen oder Packlisten mit einem Tipp – z.&nbsp;B. direkt in eure Gruppe.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-badge"><svg width="26" height="26"><use href="#i-shield"/></svg></div>
-                    <h3>Sicherheit</h3>
-                    <p>DSGVO-konform, sichere Authentifizierung, verschlüsselte Datenübertragung und ein Bewertungssystem für sichere Reisegemeinschaften.</p>
+                    <h3>Vertrauen</h3>
+                    <p>Verifiziert wird, wer aktiv ist – durch Reisen und Bewertungen. Abzeichen wie „Zuverlässig“ zeigen, wer Reisen durchzieht. Cockpit-Inhalte sieht nur die Gruppe.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gruppen-Cockpit -->
+    <section id="cockpit">
+        <div class="container cockpit-grid">
+            <div>
+                <span class="eyebrow">Neu in der Beta</span>
+                <h2>Das Reise-<span class="gradient-text">Cockpit</span></h2>
+                <p>Sobald eure Gruppe steht, plant ihr gemeinsam – ohne WhatsApp-Chaos, Tabellen und Zettelwirtschaft.</p>
+                <ul class="module-list">
+                    <li>
+                        <div class="icon-badge"><svg width="22" height="22"><use href="#i-pin"/></svg></div>
+                        <div><h3>Pinnwand</h3><p>Unterkunft, Flüge, Zugtickets, Mietwagen und Links chronologisch an einem Ort. Adresse antippen öffnet die Karte, Buchungsnummer ist mit einem Tipp kopiert.</p></div>
+                    </li>
+                    <li>
+                        <div class="icon-badge"><svg width="22" height="22"><use href="#i-list"/></svg></div>
+                        <div><h3>Wer bucht was</h3><p>Aufgaben verteilen, abhaken und eine gemeinsame Packliste führen – mit Vorschlägen für den Start.</p></div>
+                    </li>
+                    <li>
+                        <div class="icon-badge"><svg width="22" height="22"><use href="#i-wallet"/></svg></div>
+                        <div><h3>Kasse</h3><p>Ausgaben eintragen, aufteilen und sehen, wer wem wie viel schuldet – mit so wenigen Überweisungen wie möglich.</p></div>
+                    </li>
+                    <li>
+                        <div class="icon-badge"><svg width="22" height="22"><use href="#i-vote"/></svg></div>
+                        <div><h3>Abstimmen</h3><p>Welche Tour, welches Restaurant, wann geht's los? Die Gruppe entscheidet mit einem Tipp.</p></div>
+                    </li>
+                </ul>
+                <p class="note">Die Kasse rechnet nur – über Twavio werden keine Zahlungen abgewickelt.</p>
+            </div>
+            <div class="cockpit-phones" aria-hidden="true">
+                <div class="phone back"><img src="images/app-kasse.jpg" alt="" loading="lazy"></div>
+                <div class="phone front"><img src="images/app-pinnwand.jpg" alt="" loading="lazy"></div>
             </div>
         </div>
     </section>
@@ -338,19 +400,19 @@
             </div>
             <div class="showcase-grid">
                 <div class="showcase-item">
-                    <div class="phone"><img src="images/app-suche.jpg" alt="Twavio App: Reisesuche mit beliebten Zielen und Reisestil-Filtern" loading="lazy"></div>
-                    <h3>Finden</h3>
-                    <p>Ziel eingeben, Reisestil wählen – passende Reisen erscheinen sofort.</p>
+                    <div class="phone"><img src="images/app-anfrage.jpg" alt="Twavio App: verbindliche Anfrage mit Vorstellung und Bestätigungen" loading="lazy"></div>
+                    <h3>Verbindlich anfragen</h3>
+                    <p>Kurz vorstellen, Fragen der Reiseleitung beantworten, Zeitraum und Budget bestätigen.</p>
                 </div>
                 <div class="showcase-item">
-                    <div class="phone"><img src="images/app-reise-vorschau.jpg" alt="Twavio App: Vorschau einer neuen Reise nach Lissabon" loading="lazy"></div>
-                    <h3>Planen</h3>
-                    <p>In vier kurzen Schritten ist deine eigene Reise online.</p>
+                    <div class="phone"><img src="images/app-privat.jpg" alt="Twavio App: private Reise nach Tromsø" loading="lazy"></div>
+                    <h3>Privat reisen</h3>
+                    <p>Private Reisen findet nur, wer deinen Link oder Code hat – perfekt für den Freundeskreis.</p>
                 </div>
                 <div class="showcase-item">
-                    <div class="phone"><img src="images/app-reisen.jpg" alt="Twavio App: Übersicht der eigenen Reisen" loading="lazy"></div>
-                    <h3>Erleben</h3>
-                    <p>Alle Reisen, Anfragen und Gruppenchats im Blick.</p>
+                    <div class="phone"><img src="images/app-abstimmen.jpg" alt="Twavio App: Abstimmung im Reise-Cockpit" loading="lazy"></div>
+                    <h3>Gemeinsam entscheiden</h3>
+                    <p>Abstimmungen, Aufgaben und Kasse im Cockpit – live für die ganze Gruppe.</p>
                 </div>
             </div>
         </div>
@@ -362,14 +424,14 @@
             <div class="section-head">
                 <span class="eyebrow">In 5 Schritten</span>
                 <h2>So funktioniert's</h2>
-                <p>In 5 einfachen Schritten zu deiner perfekten Reisegemeinschaft</p>
+                <p>Von der Anfrage bis zur Abrechnung – in fünf Schritten zur Reisegruppe, auf die du dich verlassen kannst</p>
             </div>
             <div class="steps">
-                <div class="step"><div class="step-number">1</div><h3>Registrieren</h3><p>Registriere dich mit E-Mail oder Google-Account</p></div>
-                <div class="step"><div class="step-number">2</div><h3>Profil erstellen</h3><p>Erstelle dein Profil mit Foto, Interessen und Reisevorlieben</p></div>
-                <div class="step"><div class="step-number">3</div><h3>Reise erstellen</h3><p>Erstelle eine Reise oder suche nach passenden Reisen</p></div>
-                <div class="step"><div class="step-number">4</div><h3>Kontaktieren</h3><p>Kontaktiere Mitreisende und plane gemeinsam</p></div>
-                <div class="step"><div class="step-number">5</div><h3>Erleben</h3><p>Reise und erlebe unvergessliche Abenteuer!</p></div>
+                <div class="step"><div class="step-number">1</div><h3>Registrieren</h3><p>Konto anlegen und Profil mit Interessen, Sprachen und Foto ausfüllen</p></div>
+                <div class="step"><div class="step-number">2</div><h3>Reise finden</h3><p>Passende Reise suchen – oder selbst eine erstellen, öffentlich oder privat</p></div>
+                <div class="step"><div class="step-number">3</div><h3>Anfragen</h3><p>Kurz vorstellen und verbindlich anfragen – oder per Link eingeladen werden</p></div>
+                <div class="step"><div class="step-number">4</div><h3>Fest zusagen</h3><p>Nach der Annahme innerhalb der Frist fest zusagen – dann bist du in der Crew</p></div>
+                <div class="step"><div class="step-number">5</div><h3>Planen &amp; erleben</h3><p>Im Cockpit gemeinsam planen, losfahren und danach Mitreisende bewerten</p></div>
             </div>
         </div>
     </section>
