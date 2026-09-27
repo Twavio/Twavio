@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Du wurdest zu einer Reise auf Twavio eingeladen.">
+    <meta property="og:title" content="Du wurdest zu einer Reise eingeladen – Twavio">
+    <meta property="og:description" content="Öffne die Einladung in der Twavio-App und frag an, ob du mitkommen kannst.">
+    <title>Einladung zu einer Reise - Twavio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="stylesheet" href="twavio.css">
+    <style>
+        .invite-wrap {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 16px 48px;
+            background: linear-gradient(135deg, #EAF8F7 0%, #FFF3EE 100%);
+        }
+        .invite-card {
+            width: 100%;
+            max-width: 460px;
+            background: #fff;
+            border-radius: 28px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(13, 19, 33, 0.10);
+        }
+        .invite-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            background: linear-gradient(135deg, #3BB7B2, #FF8A65);
+        }
+        .invite-card h1 {
+            font-size: 1.7rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .invite-card p {
+            color: #5b6474;
+            line-height: 1.6;
+        }
+        .invite-code {
+            margin: 24px 0 8px;
+            padding: 16px;
+            border-radius: 16px;
+            background: #F4F6F8;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.35em;
+            color: #0D1321;
+        }
+        .invite-hint {
+            font-size: 0.9rem;
+        }
+        .invite-actions {
+            display: grid;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .invite-actions .btn {
+            justify-content: center;
+            width: 100%;
+        }
+        .invite-missing {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#hero" class="logo"><img src="app-icon-new.png" alt="Twavio Logo" class="logo-img"><span class="logo-text">Twavio</span></a>
+        </div>
+    </nav>
+
+    <main class="invite-wrap">
+        <div class="invite-card">
+            <div class="invite-icon" aria-hidden="true">✈️</div>
+            <h1>Du wurdest zu einer Reise eingeladen</h1>
+            <p>Öffne die Einladung in der Twavio-App, schau dir die Reise an und frag an, ob du mitkommen kannst.</p>
+
+            <div id="invite-found">
+                <div class="invite-code" id="invite-code" aria-label="Einladungscode">······</div>
+                <p class="invite-hint">Einladungscode – in der App unter „Deine Reisen“ → 🔑 eingeben</p>
+                <div class="invite-actions">
+                    <a class="btn btn-primary" id="open-app" href="travelmateapp://r">In der App öffnen</a>
+                    <a class="btn btn-secondary" href="tester-anmeldung.html">App noch nicht installiert? Jetzt Tester werden</a>
+                </div>
+            </div>
+
+            <div id="invite-missing" class="invite-missing">
+                <p style="margin-top: 20px;">Dieser Link enthält keinen gültigen Einladungscode. Frag die Person, die dich eingeladen hat, nach dem Code.</p>
+                <div class="invite-actions">
+                    <a class="btn btn-primary" href="index.html">Zu Twavio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var raw = new URLSearchParams(window.location.search).get('c') || '';
+            var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+            if (code.length < 4) {
+                document.getElementById('invite-found').style.display = 'none';
+                document.getElementById('invite-missing').style.display = 'block';
+                return;
+            }
+            document.getElementById('invite-code').textContent = code;
+            document.getElementById('open-app').href = 'travelmateapp://r?c=' + encodeURIComponent(code);
+        })();
+    </script>
+</body>
+</html>

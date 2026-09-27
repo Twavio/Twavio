@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.enriquerodriguez.travelmateapp",
+      "sha256_cert_fingerprints": [
+        "E7:30:F5:5E:FD:6D:AB:6E:04:35:26:D5:3D:E6:F0:6A:DD:25:43:81:06:35:11:A7:98:34:8B:17:82:96:A9:A6"
+      ]
+    }
+  }
+]
