@@ -5,9 +5,9 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.enriquerodriguez.travelmateapp",
+      "package_name": "com.twavio.app",
       "sha256_cert_fingerprints": [
-        "E7:30:F5:5E:FD:6D:AB:6E:04:35:26:D5:3D:E6:F0:6A:DD:25:43:81:06:35:11:A7:98:34:8B:17:82:96:A9:A6"
+        "73:14:AC:E8:D3:76:5F:33:36:8B:F8:A8:CC:AE:86:E7:2E:86:EE:BA:53:48:FD:DE:80:3A:DC:0E:43:53:27:0C"
       ]
     }
   }
