@@ -3,28 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Melde dich als Beta-Tester für Twavio an und teste die App vor dem offiziellen Launch">
-    <title>Beta-Tester werden - Twavio</title>
+    <meta name="description" content="Kinderschutz-Standards der Twavio App: Null Toleranz gegenüber sexuellem Missbrauch und Ausbeutung von Kindern">
+    <title>Kinderschutz-Standards - Twavio</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.svg">
-    <!-- EmailJS für E-Mail-Versand -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // EmailJS Initialisierung
-        // Ersetze 'YOUR_PUBLIC_KEY' mit deinem EmailJS Public Key
-        // Kostenloser Account: https://www.emailjs.com/
-        (function(){
-            emailjs.init({
-                publicKey: "OQUrvCuixpqHFwZY3",
-                blockHeadless: true, // Verhindert Tracking ohne Einwilligung
-                blockList: {
-                    list: ['blockedDomain.com'], // Optional: Block-Liste
-                    watchVariable: 'userEmail'
-                }
-            });
-        })();
-    </script>
     <style>
         * {
             margin: 0;
@@ -107,12 +90,12 @@
             --spacing-5xl: 48px;
             
             /* Border Radius */
-            --radius-button: 16px;
+            --radius-button: 28px;
             --radius-card: 20px;
-            --radius-input: 16px;
-            --radius-small: 12px;
+            --radius-input: 28px;
+            --radius-small: 8px;
             --radius-medium: 12px;
-            --radius-large: 28px;
+            --radius-large: 16px;
         }
         
         html {
@@ -170,6 +153,11 @@
             display: block;
         }
         
+        .logo-emoji {
+            font-style: normal;
+            font-size: 1.4rem;
+        }
+        
         .logo-text {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
@@ -223,184 +211,104 @@
             color: var(--text-dark);
         }
         
-        /* Content */
-        .container {
-            max-width: 800px;
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
             margin: 0 auto;
             padding: 3rem 2rem;
         }
         
-        .content-card {
+        /* Signature Card Style - Web optimiert */
+        .card {
             background: var(--card);
-            border-radius: var(--radius-card);
-            box-shadow: var(--shadow);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.1);
             border: 1px solid var(--border-light);
-            padding: 3rem;
-            margin-bottom: 2rem;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-        
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-        
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        
-        .required {
-            color: var(--error);
-        }
-        
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.875rem 1.25rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-input);
-            font-size: 1rem;
-            font-family: inherit;
-            color: var(--text-dark);
-            background: var(--bg-white);
             transition: all 0.3s ease;
         }
         
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 183, 178, 0.1);
+        .container {
+            background: var(--card);
+            padding: var(--spacing-3xl);
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(59, 183, 178, 0.1);
+            border: 1px solid var(--border-light);
         }
         
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
+        h1 {
+            color: var(--text-dark);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
             margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
         
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 0.2rem;
-            flex-shrink: 0;
-            cursor: pointer;
+        h2 {
+            color: var(--text-dark);
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            padding-top: 1rem;
+            letter-spacing: -0.3px;
         }
         
-        .checkbox-group label {
-            margin-bottom: 0;
-            font-weight: 400;
-            cursor: pointer;
+        h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
         }
         
-        .checkbox-group a {
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            color: var(--text-gray);
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        a {
             color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
         
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: var(--radius-button);
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.3px;
-            width: 100%;
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--bg-light);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
         }
         
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 4px 14px rgba(59, 183, 178, 0.25);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 183, 178, 0.35);
-        }
-        
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius-input);
-            margin-bottom: 2rem;
-            border: 1px solid #c3e6cb;
-            display: none;
-        }
-        
-        .success-message.show {
-            display: block;
-        }
-        
-        .info-box {
-            background: var(--card-hover);
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: var(--radius-small);
-        }
-        
-        .info-box p {
-            margin-bottom: 0;
-            color: var(--text-dark);
-        }
-        
-        /* Footer */
+        /* Footer - Professioneller */
         footer {
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
@@ -471,16 +379,20 @@
                 display: block;
             }
             
-            .container {
+            .main-content {
                 padding: 2rem 1rem;
             }
             
-            .content-card {
+            .container {
                 padding: 2rem 1.5rem;
             }
             
             h1 {
                 font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -495,78 +407,63 @@
                 <li><a href="index.html#features">Features</a></li>
                 <li><a href="index.html#how-it-works">So funktioniert's</a></li>
                 <li><a href="index.html#download">Bald verfügbar</a></li>
-                <li><a href="tester-anmeldung.html">Beta-Tester werden</a></li>
                 <li><a href="index.html#contact">Kontakt</a></li>
             </ul>
             <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <!-- Content -->
-    <div class="container">
-        <div class="content-card">
-            <h1>🚀 Werde Beta-Tester</h1>
-            <p class="subtitle">Hilf uns, Twavio zu verbessern! Als Beta-Tester erhältst du frühen Zugang zur App und kannst aktiv an der Entwicklung mitwirken.</p>
-            
-            <div class="info-box">
-                <p><strong>Was erwartet dich als Beta-Tester?</strong></p>
-                <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: var(--text-dark);">
-                    <li>Früher Zugang zur Twavio App</li>
-                    <li>Möglichkeit, Feedback zu geben und Features mitzugestalten</li>
-                    <li>Exklusive Updates und Neuigkeiten</li>
-                    <li>Teilnahme an einer exklusiven Community</li>
-                </ul>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Kinderschutz-Standards</h1>
+
+            <p>Twavio duldet keinerlei sexuellen Missbrauch oder sexuelle Ausbeutung von Kindern (englisch „Child Sexual Abuse and Exploitation“, CSAE). Diese Seite beschreibt, welche Regeln in der App gelten, wie Verstöße gemeldet werden können und wie wir damit umgehen.</p>
+
+            <h2>1. Nur für Erwachsene</h2>
+            <p>Twavio richtet sich ausschließlich an Personen ab 18 Jahren (Nutzungsbedingungen, Ziffer 3.1). Konten, bei denen wir Hinweise haben, dass sie von Minderjährigen genutzt werden, werden gesperrt und gelöscht.</p>
+
+            <h2>2. Verbotene Inhalte und Verhaltensweisen</h2>
+            <p>In Twavio ist insbesondere verboten:</p>
+            <ul>
+                <li>Darstellungen des sexuellen Missbrauchs von Kindern (CSAM) jeder Art – Bilder, Videos, Texte, Links oder KI-generierte Inhalte</li>
+                <li>die Sexualisierung von Minderjährigen</li>
+                <li>Grooming, also die Kontaktanbahnung zu Minderjährigen mit sexueller Absicht</li>
+                <li>Sextortion sowie jede Form von Menschenhandel oder Ausbeutung von Kindern</li>
+                <li>Reisen oder Treffen, die dem Missbrauch von Kindern dienen oder ihn ermöglichen sollen</li>
+            </ul>
+            <p>Verstöße führen zur sofortigen, dauerhaften Sperrung des Kontos.</p>
+
+            <h2>3. Melden in der App</h2>
+            <p>Profile, Reisen und Nachrichten (Gruppen- und Privatchats) lassen sich direkt in der App melden:</p>
+            <ul>
+                <li><strong>Profil:</strong> Profil öffnen → Menü „⋯“ → „Melden“</li>
+                <li><strong>Reise:</strong> Reise öffnen → Menü „⋯“ → „Reise melden“</li>
+                <li><strong>Nachricht:</strong> Nachricht lange gedrückt halten → „Melden“</li>
+            </ul>
+            <p>Meldungen sind vertraulich; die gemeldete Person erfährt nicht, wer gemeldet hat. Zusätzlich lassen sich Nutzer blockieren. Hinweise können außerdem jederzeit per E-Mail an <a href="mailto:info@twavio.com">info@twavio.com</a> geschickt werden.</p>
+
+            <h2>4. Umgang mit Meldungen</h2>
+            <p>Meldungen zum Schutz von Kindern werden vorrangig geprüft. Bestätigt sich ein Verdacht,</p>
+            <ul>
+                <li>entfernen wir die betreffenden Inhalte umgehend,</li>
+                <li>sperren das Konto dauerhaft,</li>
+                <li>sichern die für Ermittlungen erforderlichen Daten im gesetzlich zulässigen Rahmen und</li>
+                <li>melden den Fall den zuständigen Strafverfolgungsbehörden (in Deutschland Polizei bzw. Bundeskriminalamt) sowie, soweit gesetzlich vorgesehen, weiteren zuständigen Stellen.</li>
+            </ul>
+
+            <h2>5. Einhaltung von Gesetzen</h2>
+            <p>Twavio hält die geltenden Gesetze zum Schutz von Kindern ein, insbesondere das deutsche Strafgesetzbuch (§§ 184b ff. StGB), das Jugendschutzgesetz und den Digital Services Act der EU. Wir arbeiten mit Behörden zusammen, wenn es um den Schutz von Kindern geht.</p>
+            <p>Wer Darstellungen des sexuellen Missbrauchs von Kindern im Internet entdeckt, kann dies auch direkt melden, zum Beispiel bei der Polizei oder bei der <a href="https://www.internet-beschwerdestelle.de" rel="noopener">Internet-Beschwerdestelle</a>. Im Notfall: Polizei 110.</p>
+
+            <h2>6. Ansprechpartner</h2>
+            <p>Verantwortlich für Kinderschutz und die Einhaltung dieser Standards ist der Betreiber:<br>
+            Enrique Rodriguez Neubauer, Bolbergstr. 42, 72820 Sonnenbühl, Deutschland<br>
+            E-Mail: <a href="mailto:info@twavio.com">info@twavio.com</a></p>
+
+            <div class="footer">
+                <p><strong>Stand:</strong> 29.09.2026</p>
             </div>
-            
-            <div class="success-message" id="success-message">
-                <strong>Vielen Dank für deine Anmeldung!</strong><br>
-                <p style="margin-top: 0.5rem;">Wir haben deine Anmeldung erhalten und freuen uns sehr, dass du uns bei der Entwicklung helfen möchtest.</p>
-                <p style="margin-top: 0.5rem;">Wir werden uns in Kürze bei dir melden, sobald die Beta-Version verfügbar ist.</p>
-            </div>
-            
-            <form id="tester-form">
-                <div class="form-group">
-                    <label for="name">Name <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">E-Mail-Adresse <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telefonnummer (optional)</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                
-                <div class="form-group">
-                    <label for="device">Welches Gerät nutzt du? <span class="required">*</span></label>
-                    <select id="device" name="device" required>
-                        <option value="">Bitte wählen</option>
-                        <option value="iOS (iPhone/iPad)">iOS (iPhone/iPad)</option>
-                        <option value="Android">Android</option>
-                        <option value="Beide">Beide</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="motivation">Warum möchtest du Beta-Tester werden? <span class="required">*</span></label>
-                    <textarea id="motivation" name="motivation" required placeholder="Erzähle uns, warum du Twavio testen möchtest..."></textarea>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="privacy" name="privacy" required>
-                    <label for="privacy">Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. Die Daten werden über EmailJS verarbeitet, um E-Mails zu versenden. <span class="required">*</span></label>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="newsletter" name="newsletter" value="1">
-                    <label for="newsletter">Ich möchte über Neuigkeiten und Updates per E-Mail informiert werden.</label>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Anmeldung absenden</button>
-            </form>
         </div>
     </div>
 
@@ -727,70 +624,6 @@
             }
         })();
 
-        // Form Submission - sendet E-Mails via EmailJS
-        document.getElementById('tester-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = this;
-            const submitButton = form.querySelector('button[type="submit"]');
-            const successMessage = document.getElementById('success-message');
-            
-            // Formularvalidierung
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-            
-            // Prüfe ob EmailJS initialisiert ist
-            if (typeof emailjs === 'undefined') {
-                alert('E-Mail-Service nicht verfügbar. Bitte kontaktiere uns direkt unter info@twavio.com');
-                return;
-            }
-            
-            // Button deaktivieren während des Versands
-            submitButton.disabled = true;
-            submitButton.textContent = 'Wird gesendet...';
-            
-            // Formulardaten sammeln
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value || 'Nicht angegeben';
-            const device = document.getElementById('device').value;
-            const motivation = document.getElementById('motivation').value;
-            const newsletter = document.getElementById('newsletter').checked ? 'Ja' : 'Nein';
-            const timestamp = new Date().toLocaleString('de-DE');
-            
-            // E-Mail-Parameter für Admin-E-Mail
-            // Alle Variablen einzeln senden, damit sie im EmailJS Template verwendet werden können
-            const adminTemplateParams = {
-                to_email: 'info@twavio.com',
-                to_name: 'Twavio Team',
-                from_name: name,
-                from_email: email,
-                reply_to: email,
-                phone: phone,
-                device: device,
-                newsletter: newsletter,
-                motivation: motivation,
-                timestamp: timestamp
-            };
-            
-            // Sende E-Mail an Admin
-            emailjs.send('service_n819ygk', 'template_wvapw9b', adminTemplateParams)
-                .then(function() {
-                    // Erfolg - nur Admin-E-Mail wird gesendet
-                    form.style.display = 'none';
-                    successMessage.classList.add('show');
-                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                })
-                .catch(function(error) {
-                    console.error('EmailJS Fehler:', error);
-                    alert('Ein Fehler ist aufgetreten. Bitte versuche es später erneut oder kontaktiere uns direkt unter info@twavio.com');
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Anmeldung absenden';
-                });
-        });
-
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -811,4 +644,3 @@
     </script>
 </body>
 </html>
-
