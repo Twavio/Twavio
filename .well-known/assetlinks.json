@@ -7,7 +7,8 @@
       "namespace": "android_app",
       "package_name": "com.twavio.app",
       "sha256_cert_fingerprints": [
-        "73:14:AC:E8:D3:76:5F:33:36:8B:F8:A8:CC:AE:86:E7:2E:86:EE:BA:53:48:FD:DE:80:3A:DC:0E:43:53:27:0C"
+        "73:14:AC:E8:D3:76:5F:33:36:8B:F8:A8:CC:AE:86:E7:2E:86:EE:BA:53:48:FD:DE:80:3A:DC:0E:43:53:27:0C",
+        "15:50:D0:16:A3:39:12:54:6F:3F:31:4D:65:C0:11:47:89:D8:DA:4D:30:17:50:21:AC:B3:A7:CD:E3:59:F0:91"
       ]
     }
   }
