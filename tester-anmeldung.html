@@ -506,16 +506,16 @@
     <div class="container">
         <div class="content-card">
             <h1>🚀 Werde Beta-Tester</h1>
-            <p class="subtitle">Hilf uns, Twavio zu verbessern! Als Beta-Tester erhältst du frühen Zugang zur App und kannst aktiv an der Entwicklung mitwirken.</p>
-            
+            <p class="subtitle">Hilf uns, Twavio in den Play Store zu bringen! Als Beta-Tester nutzt du die App vor allen anderen und gestaltest sie mit.</p>
+
             <div class="info-box">
-                <p><strong>Was erwartet dich als Beta-Tester?</strong></p>
-                <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: var(--text-dark);">
-                    <li>Früher Zugang zur Twavio App</li>
-                    <li>Möglichkeit, Feedback zu geben und Features mitzugestalten</li>
-                    <li>Exklusive Updates und Neuigkeiten</li>
-                    <li>Teilnahme an einer exklusiven Community</li>
-                </ul>
+                <p><strong>So funktioniert's (Android):</strong></p>
+                <ol style="margin-top: 0.5rem; padding-left: 1.5rem; color: var(--text-dark);">
+                    <li>Trag unten die Google-Adresse ein, mit der du den Play Store nutzt (meist deine Gmail-Adresse).</li>
+                    <li>Wir schalten dich frei und schicken dir den Link zur App.</li>
+                    <li>App installieren und mindestens 14 Tage behalten, gerne mit Feedback. 🙏</li>
+                </ol>
+                <p style="margin-top: 0.5rem;">iPhone? Trag dich trotzdem ein, die iOS-Version folgt.</p>
             </div>
             
             <div class="success-message" id="success-message">
@@ -531,15 +531,10 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">E-Mail-Adresse <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email">Google-/Gmail-Adresse (Play Store) <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="name@gmail.com">
                 </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telefonnummer (optional)</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-                
+
                 <div class="form-group">
                     <label for="device">Welches Gerät nutzt du? <span class="required">*</span></label>
                     <select id="device" name="device" required>
@@ -551,8 +546,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="motivation">Warum möchtest du Beta-Tester werden? <span class="required">*</span></label>
-                    <textarea id="motivation" name="motivation" required placeholder="Erzähle uns, warum du Twavio testen möchtest..."></textarea>
+                    <label for="motivation">Wie bist du auf uns gekommen? (optional)</label>
+                    <textarea id="motivation" name="motivation" placeholder="z. B. Instagram, Freunde …"></textarea>
                 </div>
                 
                 <div class="checkbox-group">
@@ -754,9 +749,9 @@
             // Formulardaten sammeln
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value || 'Nicht angegeben';
+            const phone = 'Nicht abgefragt';
             const device = document.getElementById('device').value;
-            const motivation = document.getElementById('motivation').value;
+            const motivation = document.getElementById('motivation').value || 'Nicht angegeben';
             const newsletter = document.getElementById('newsletter').checked ? 'Ja' : 'Nein';
             const timestamp = new Date().toLocaleString('de-DE');
             
